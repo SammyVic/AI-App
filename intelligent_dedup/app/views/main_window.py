@@ -258,12 +258,22 @@ class MainWindow(QMainWindow):
             "per-group file retention recommendations here."
         )
 
+        lbl_preview = QLabel("<b>👁️ Selection Preview</b>")
+        lbl_preview.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        
+        self._preview_text = QTextEdit()
+        self._preview_text.setReadOnly(True)
+        self._preview_text.setPlaceholderText("Select a file in the table to view its properties and thumbnail.")
+
         self._btn_export_log = QPushButton("💾 Export Agent Log")
         self._btn_export_log.setEnabled(False)
         self._btn_export_log.clicked.connect(self._export_agent_log)
 
         layout.addWidget(lbl)
         layout.addWidget(self._agent_text, stretch=1)
+        layout.addSpacing(10)
+        layout.addWidget(lbl_preview)
+        layout.addWidget(self._preview_text, stretch=1)
         layout.addWidget(self._btn_export_log)
         return pane
 
@@ -409,7 +419,32 @@ class MainWindow(QMainWindow):
         self._progress.setVisible(scanning)
 
     def _on_table_selection(self) -> None:
-        pass  # Preview panel hook (future)
+        idx = self._table.currentIndex()
+        if not idx.isValid():
+            self._preview_text.clear()
+            return
+            
+        row = idx.row()
+        if row < 0 or row >= len(self._results_model._rows):
+            return
+            
+        row_data = self._results_model._rows[row]
+        
+        if row_data.is_group_header:
+            self._preview_text.setHtml(f"<h3>Group Header</h3><p>{row_data.path}</p>")
+            return
+            
+        html = f"<h3>{row_data.filename}</h3>"
+        html += f"<p><b>Path:</b> {row_data.path}<br>"
+        html += f"<b>Size:</b> {row_data.size_mb} MB<br>"
+        html += f"<b>Modified:</b> {row_data.modified_str}<br>"
+        html += f"<b>Status:</b> {row_data.status}</p>"
+        
+        ext = os.path.splitext(row_data.filename)[1].lower()
+        if ext in {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp"}:
+            html += f"<br><img src='{row_data.path}' width='300' />"
+            
+        self._preview_text.setHtml(html)
 
     def _render_agent_panel(self, decisions: dict) -> None:
         lines = ["<h3>AI Retention Recommendations</h3>"]

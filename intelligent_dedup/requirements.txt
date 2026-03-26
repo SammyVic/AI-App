@@ -3,37 +3,37 @@
 # =============================================================================
 
 # --- GUI Framework ---
-PyQt6==6.7.1
+PyQt6>=6.6.0
 
 # --- Database / ORM ---
-SQLAlchemy==2.0.36
-alembic==1.14.0            # Schema migrations
+SQLAlchemy>=2.0.0
+alembic>=1.13.0
 
 # --- File Operations ---
-send2trash==1.8.3
-watchdog==6.0.0            # Filesystem event monitoring (future use)
+send2trash>=1.8.0
+watchdog>=4.0.0            # Filesystem event monitoring (future use)
 
 # --- Image Processing ---
-Pillow==11.1.0
-imagehash==4.3.1           # Legacy perceptual hashing (fallback)
+Pillow>=10.0.0
+imagehash>=4.3.0           # Legacy perceptual hashing (fallback)
 
 # --- ML / Embeddings ---
-onnxruntime==1.20.1        # ONNX runtime for model inference
-numpy==1.26.4              # Vectorized array operations
-transformers==4.48.0       # Tokenizers for SentenceTransformer ONNX
-huggingface-hub==0.27.0    # Model downloads
+onnxruntime>=1.17.0        # ONNX runtime for model inference
+numpy                      # Vectorized array operations (version unpinned to avoid build issues)
+transformers>=4.40.0       # Tokenizers for SentenceTransformer ONNX
+huggingface-hub>=0.23.0    # Model downloads
 
 # --- Data Processing ---
-pandas==2.2.3              # Optional: dataframe-based reporting
+pandas>=2.0.0              # Optional: dataframe-based reporting
 
 # --- Rust Extension Build ---
-maturin==1.8.1             # Build Rust PyO3 extensions
+maturin>=1.5.0             # Build Rust PyO3 extensions
 
 # --- Logging / Utilities ---
-rich==13.9.4               # Pretty terminal output for CLI
-click==8.1.8               # CLI argument parsing
-python-dateutil==2.9.0
+rich>=13.7.0               # Pretty terminal output for CLI
+click>=8.1.0               # CLI argument parsing
+python-dateutil>=2.8.0
 
 # --- Development / Testing ---
-pytest==8.3.4
-pytest-cov==6.0.0
+pytest>=8.0.0
+pytest-cov>=5.0.0

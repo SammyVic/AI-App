@@ -63,30 +63,30 @@ class ScanSession(Base):
     """
     __tablename__ = "scan_sessions"
 
-    id: int = Column(Integer, primary_key=True, autoincrement=True)
-    folder_path: str = Column(String(2048), nullable=False, index=True)
-    started_at: float = Column(Float, nullable=False, default=lambda: datetime.now(timezone.utc).timestamp())
-    completed_at: Optional[float] = Column(Float, nullable=True)
-    duration_seconds: Optional[float] = Column(Float, nullable=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    folder_path = Column(String(2048), nullable=False, index=True)
+    started_at = Column(Float, nullable=False, default=lambda: datetime.now(timezone.utc).timestamp())
+    completed_at = Column(Float, nullable=True)
+    duration_seconds = Column(Float, nullable=True)
 
-    files_scanned: int = Column(Integer, default=0)
-    duplicate_groups: int = Column(Integer, default=0)
-    duplicate_files: int = Column(Integer, default=0)
-    space_recoverable_bytes: int = Column(Integer, default=0)
+    files_scanned = Column(Integer, default=0)
+    duplicate_groups = Column(Integer, default=0)
+    duplicate_files = Column(Integer, default=0)
+    space_recoverable_bytes = Column(Integer, default=0)
 
-    comparison_method: str = Column(String(64), default="sha256")  # 'md5' | 'sha256' | 'simple'
-    used_semantic: bool = Column(Boolean, default=False)
-    used_fuzzy: bool = Column(Boolean, default=False)
-    used_phash: bool = Column(Boolean, default=False)
+    comparison_method = Column(String(64), default="sha256")  # 'md5' | 'sha256' | 'simple'
+    used_semantic = Column(Boolean, default=False)
+    used_fuzzy = Column(Boolean, default=False)
+    used_phash = Column(Boolean, default=False)
 
-    status: str = Column(String(32), default="running")  # 'running' | 'completed' | 'cancelled' | 'error'
-    error_message: Optional[str] = Column(String(4096), nullable=True)
+    status = Column(String(32), default="running")  # 'running' | 'completed' | 'cancelled' | 'error'
+    error_message = Column(String(4096), nullable=True)
 
     # Relationships
-    files: list["FileMetadata"] = relationship(
+    files = relationship(
         "FileMetadata", back_populates="session", cascade="all, delete-orphan", lazy="dynamic"
     )
-    groups: list["DuplicateGroup"] = relationship(
+    groups = relationship(
         "DuplicateGroup", back_populates="session", cascade="all, delete-orphan", lazy="dynamic"
     )
 
@@ -105,24 +105,24 @@ class FileMetadata(Base):
     """
     __tablename__ = "file_metadata"
 
-    id: int = Column(Integer, primary_key=True, autoincrement=True)
-    session_id: int = Column(Integer, ForeignKey("scan_sessions.id", ondelete="CASCADE"), nullable=False)
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    session_id = Column(Integer, ForeignKey("scan_sessions.id", ondelete="CASCADE"), nullable=False)
 
-    full_path: str = Column(String(4096), nullable=False)
-    filename: str = Column(String(512), nullable=False)
-    extension: str = Column(String(32), nullable=False)
-    size_bytes: int = Column(Integer, nullable=False)
-    modified_at: float = Column(Float, nullable=False)  # unix timestamp
+    full_path = Column(String(4096), nullable=False)
+    filename = Column(String(512), nullable=False)
+    extension = Column(String(32), nullable=False)
+    size_bytes = Column(Integer, nullable=False)
+    modified_at = Column(Float, nullable=False)  # unix timestamp
 
-    md5_hash: Optional[str] = Column(String(32), nullable=True, index=True)
-    sha256_hash: Optional[str] = Column(String(64), nullable=True, index=True)
-    embedding_vector: Optional[bytes] = Column(LargeBinary, nullable=True)  # serialized np.ndarray
+    md5_hash = Column(String(32), nullable=True, index=True)
+    sha256_hash = Column(String(64), nullable=True, index=True)
+    embedding_vector = Column(LargeBinary, nullable=True)  # serialized np.ndarray
 
-    is_symlink: bool = Column(Boolean, default=False)
+    is_symlink = Column(Boolean, default=False)
 
     # Relationships
-    session: "ScanSession" = relationship("ScanSession", back_populates="files")
-    actions: list["FileAction"] = relationship(
+    session = relationship("ScanSession", back_populates="files")
+    actions = relationship(
         "FileAction", back_populates="file", cascade="all, delete-orphan"
     )
 
@@ -141,23 +141,23 @@ class DuplicateGroup(Base):
     """
     __tablename__ = "duplicate_groups"
 
-    id: int = Column(Integer, primary_key=True, autoincrement=True)
-    session_id: int = Column(Integer, ForeignKey("scan_sessions.id", ondelete="CASCADE"), nullable=False)
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    session_id = Column(Integer, ForeignKey("scan_sessions.id", ondelete="CASCADE"), nullable=False)
 
-    group_key: str = Column(String(256), nullable=False)   # e.g. "exact_0", "visual_12"
-    match_type: str = Column(String(32), nullable=False)   # 'exact_hash' | 'visual' | 'fuzzy' | 'simple' | 'semantic'
-    group_size: int = Column(Integer, nullable=False)       # number of files in group
+    group_key = Column(String(256), nullable=False)   # e.g. "exact_0", "visual_12"
+    match_type = Column(String(32), nullable=False)   # 'exact_hash' | 'visual' | 'fuzzy' | 'simple' | 'semantic'
+    group_size = Column(Integer, nullable=False)       # number of files in group
 
-    file_paths_json: str = Column(String, nullable=False)  # JSON array of absolute paths
-    space_recoverable_bytes: int = Column(Integer, default=0)
+    file_paths_json = Column(String, nullable=False)  # JSON array of absolute paths
+    space_recoverable_bytes = Column(Integer, default=0)
 
     # Agent fields
-    agent_recommended_keep: Optional[str] = Column(String(4096), nullable=True)
-    agent_confidence: Optional[float] = Column(Float, nullable=True)
-    agent_reasoning_json: Optional[str] = Column(String, nullable=True)  # JSON reasoning log
+    agent_recommended_keep = Column(String(4096), nullable=True)
+    agent_confidence = Column(Float, nullable=True)
+    agent_reasoning_json = Column(String, nullable=True)  # JSON reasoning log
 
     # Relationships
-    session: "ScanSession" = relationship("ScanSession", back_populates="groups")
+    session = relationship("ScanSession", back_populates="groups")
 
     __table_args__ = (
         Index("ix_group_session_key", "session_id", "group_key"),
@@ -182,19 +182,19 @@ class FileAction(Base):
     """
     __tablename__ = "file_actions"
 
-    id: int = Column(Integer, primary_key=True, autoincrement=True)
-    file_id: int = Column(Integer, ForeignKey("file_metadata.id", ondelete="SET NULL"), nullable=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    file_id = Column(Integer, ForeignKey("file_metadata.id", ondelete="SET NULL"), nullable=True)
 
-    full_path: str = Column(String(4096), nullable=False)   # denormalized for post-delete lookup
-    action: str = Column(String(32), nullable=False)         # 'deleted' | 'kept' | 'quarantined' | 'skipped'
-    acted_at: float = Column(Float, nullable=False, default=lambda: datetime.now(timezone.utc).timestamp())
+    full_path = Column(String(4096), nullable=False)   # denormalized for post-delete lookup
+    action = Column(String(32), nullable=False)         # 'deleted' | 'kept' | 'quarantined' | 'skipped'
+    acted_at = Column(Float, nullable=False, default=lambda: datetime.now(timezone.utc).timestamp())
 
-    freed_bytes: int = Column(Integer, default=0)
-    agent_recommended: bool = Column(Boolean, default=False)  # Was this the agent's recommendation?
-    method: str = Column(String(32), default="user")  # 'user' | 'agent' | 'profile'
+    freed_bytes = Column(Integer, default=0)
+    agent_recommended = Column(Boolean, default=False)  # Was this the agent's recommendation?
+    method = Column(String(32), default="user")  # 'user' | 'agent' | 'profile'
 
     # Relationship
-    file: Optional["FileMetadata"] = relationship("FileMetadata", back_populates="actions")
+    file = relationship("FileMetadata", back_populates="actions")
 
     def __repr__(self) -> str:
         return f"<FileAction id={self.id} action={self.action!r} path={self.full_path!r}>"

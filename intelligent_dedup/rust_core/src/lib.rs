@@ -54,8 +54,9 @@ fn is_excluded(entry: &DirEntry) -> bool {
 fn hash_md5(path: &Path) -> Option<String> {
     let file = File::open(path).ok()?;
     let mmap = unsafe { Mmap::map(&file).ok()? };
-    let digest = md5::compute(&*mmap);
-    Some(format!("{:x}", digest))
+    let mut hasher = Md5::new();
+    hasher.update(&*mmap);
+    Some(format!("{:x}", hasher.finalize()))
 }
 
 /// Compute SHA-256 of a file using memory mapping.

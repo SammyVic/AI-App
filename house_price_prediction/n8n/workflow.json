@@ -1,0 +1,125 @@
+{
+  "name": "House Price Prediction MLOps",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "command": "python src/data_generator.py"
+      },
+      "name": "1. Generate Data",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "command": "dvc add data/dataset.csv && git add data/dataset.csv.dvc data/.gitignore"
+      },
+      "name": "2. Data Versioning",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "command": "python src/train.py"
+      },
+      "name": "3. Train Model & Track (MLflow)",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "command": "echo 'Model trained and saved to MLflow Model Registry.'"
+      },
+      "name": "4. Model Registry",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {
+        "command": "echo 'Triggering Deployment... (e.g. Restart FastAPI)'"
+      },
+      "name": "5. API Deployment",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [1250, 300]
+    },
+    {
+      "parameters": {
+        "content": "## MLOps Pipeline\n\nThis workflow demonstrates the orchestration of the ML pipeline:\n\n1. **Data**: Generates synthetic house data.\n2. **Versioning**: Uses DVC to track data changes.\n3. **Training & Tracking**: Runs MLflow to train Random Forest and track metrics.\n4. **Registry**: MLflow stores the model.\n5. **Deployment**: API logic is updated.\n6. **Monitoring**: (Not explicitly Node, but Streamlit/API handles it)."
+      },
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [350, 100]
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "1. Generate Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "1. Generate Data": {
+      "main": [
+        [
+          {
+            "node": "2. Data Versioning",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "2. Data Versioning": {
+      "main": [
+        [
+          {
+            "node": "3. Train Model & Track (MLflow)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "3. Train Model & Track (MLflow)": {
+      "main": [
+        [
+          {
+            "node": "4. Model Registry",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "4. Model Registry": {
+      "main": [
+        [
+          {
+            "node": "5. API Deployment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

@@ -1,0 +1,39 @@
+# =============================================================================
+# Intelligent Duplicate Finder — Python Dependencies
+# =============================================================================
+
+# --- GUI Framework ---
+PyQt6==6.7.1
+
+# --- Database / ORM ---
+SQLAlchemy==2.0.36
+alembic==1.14.0            # Schema migrations
+
+# --- File Operations ---
+send2trash==1.8.3
+watchdog==6.0.0            # Filesystem event monitoring (future use)
+
+# --- Image Processing ---
+Pillow==11.1.0
+imagehash==4.3.1           # Legacy perceptual hashing (fallback)
+
+# --- ML / Embeddings ---
+onnxruntime==1.20.1        # ONNX runtime for model inference
+numpy==1.26.4              # Vectorized array operations
+transformers==4.48.0       # Tokenizers for SentenceTransformer ONNX
+huggingface-hub==0.27.0    # Model downloads
+
+# --- Data Processing ---
+pandas==2.2.3              # Optional: dataframe-based reporting
+
+# --- Rust Extension Build ---
+maturin==1.8.1             # Build Rust PyO3 extensions
+
+# --- Logging / Utilities ---
+rich==13.9.4               # Pretty terminal output for CLI
+click==8.1.8               # CLI argument parsing
+python-dateutil==2.9.0
+
+# --- Development / Testing ---
+pytest==8.3.4
+pytest-cov==6.0.0

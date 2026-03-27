@@ -81,6 +81,7 @@ class ScanSession(Base):
 
     status = Column(String(32), default="running")  # 'running' | 'completed' | 'cancelled' | 'error'
     error_message = Column(String(4096), nullable=True)
+    user_state_json = Column(String, nullable=True)  # JSON for checked/deleted state
 
     # Relationships
     files = relationship(
@@ -240,5 +241,13 @@ def init_db(db_path: Optional[str] = None):
     """
     engine = create_db_engine(db_path)
     Base.metadata.create_all(engine)
+    
+    # Simple migration for user_state_json
+    try:
+        with engine.begin() as conn:
+            conn.execute(text("ALTER TABLE scan_sessions ADD COLUMN user_state_json VARCHAR"))
+    except Exception:
+        pass  # Column likely already exists
+        
     logger.info("Database initialised at: %s", _get_db_path(db_path))
     return sessionmaker(bind=engine, autocommit=False, autoflush=False, expire_on_commit=False)

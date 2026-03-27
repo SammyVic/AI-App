@@ -240,6 +240,8 @@ class RetentionAgent:
                 "depth": len(Path(path).parts),
                 "filename": os.path.basename(path),
             })
+        except FileNotFoundError:
+            logger.debug("Agent: file missing (expected for historical sessions) on %r", path)
         except PermissionError as exc:
             logger.warning("Agent: permission error on %r: %s", path, exc)
         except OSError as exc:

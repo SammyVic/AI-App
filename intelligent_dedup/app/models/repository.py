@@ -140,6 +140,26 @@ class ScanRepository:
             .all()
         )
 
+    def get_latest_session(self) -> Optional[ScanSession]:
+        """Return the most recently completed session."""
+        return (
+            self._session.execute(
+                select(ScanSession)
+                .where(ScanSession.status == "completed")
+                .order_by(ScanSession.started_at.desc())
+                .limit(1)
+            )
+            .scalars()
+            .first()
+        )
+
+    def update_session_state(self, session_id: int, state_data: dict) -> None:
+        """Save user modifications like checked and deleted files list."""
+        sess = self._session.get(ScanSession, session_id)
+        if sess:
+            sess.user_state_json = json.dumps(state_data)
+            self._session.commit()
+
     # ------------------------------------------------------------------
     # FileMetadata CRUD
     # ------------------------------------------------------------------
@@ -297,6 +317,26 @@ class ScanRepository:
             )
         ).one()
 
+        # Get latest session for the new fields
+        latest = self.get_latest_session()
+        last_run_date = "Never"
+        last_run_deleted = 0
+        last_run_space = 0
+
+        if latest:
+            last_run_date = latest.started_at_human()
+            lr_action = self._session.execute(
+                select(
+                    func.count(FileAction.id),
+                    func.coalesce(func.sum(FileAction.freed_bytes), 0)
+                ).where(
+                    FileAction.action == "deleted",
+                    FileAction.acted_at >= latest.started_at
+                )
+            ).one()
+            last_run_deleted = lr_action[0]
+            last_run_space = lr_action[1]
+
         return {
             "total_runs": result.total_runs,
             "total_files_scanned": result.total_files,
@@ -304,7 +344,10 @@ class ScanRepository:
             "total_duplicate_files": result.total_dupes,
             "total_delete_operations": action_result.total_actions,
             "total_space_freed_bytes": action_result.space_freed,
-            "total_files_deleted": action_result.deleted_count,
+            "total_files_deleted": action_result.deleted_count or 0,
+            "last_run_date": last_run_date,
+            "last_run_deleted": last_run_deleted,
+            "last_run_space": last_run_space,
         }
 
     def get_space_saved_in_range(self, start: datetime, end: datetime) -> int:

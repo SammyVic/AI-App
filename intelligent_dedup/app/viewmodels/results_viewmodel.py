@@ -72,7 +72,7 @@ class DuplicateTableModel(QAbstractTableModel):
     Group headers are special rows flagged by is_group_header.
     """
 
-    selection_changed = pyqtSignal(int, int)   # (selected_files, selected_groups)
+    selection_changed = pyqtSignal(int, int, int)   # (selected_files, selected_groups, total_size_bytes)
 
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
@@ -152,6 +152,25 @@ class DuplicateTableModel(QAbstractTableModel):
             self._rows[row].status = "Deleted"
             idx = self.index(row, COL_STATUS)
             self.dataChanged.emit(idx, idx)
+            # Uncheck and clear selection state for this row
+            if row in self._checked:
+                self.check_row(row, False)
+
+    def mark_group_deleted(self, group_key: str) -> None:
+        first_row = -1
+        last_row = -1
+        for i, row in enumerate(self._rows):
+            if row.group_key == group_key:
+                row.status = "Deleted"
+                if first_row == -1:
+                    first_row = i
+                last_row = i
+                if i in self._checked:
+                    self.check_row(i, False)
+        if first_row != -1:
+            idx_tl = self.index(first_row, 0)
+            idx_br = self.index(last_row, self.columnCount() - 1)
+            self.dataChanged.emit(idx_tl, idx_br)
 
     # ------------------------------------------------------------------
     # Checkbox support
@@ -164,16 +183,30 @@ class DuplicateTableModel(QAbstractTableModel):
             self._checked.discard(row)
         idx = self.index(row, 0)
         self.dataChanged.emit(idx, idx, [Qt.ItemDataRole.CheckStateRole])
+        
+        # Notify that the group header's checkstate may have changed
+        row_data = self._rows[row]
+        if not row_data.is_group_header:
+            header_idx = self._group_header_rows.get(row_data.group_key)
+            if header_idx is not None:
+                h_idx = self.index(header_idx, 0)
+                self.dataChanged.emit(h_idx, h_idx, [Qt.ItemDataRole.CheckStateRole])
+                
         self._emit_selection_changed()
 
     def get_checked_paths(self) -> list[str]:
         return [self._rows[r].path for r in sorted(self._checked)
                 if not self._rows[r].is_group_header]
 
+    def get_checked_items(self) -> list[tuple[int, str]]:
+        return [(r, self._rows[r].path) for r in sorted(self._checked)
+                if not self._rows[r].is_group_header]
+
     def _emit_selection_changed(self) -> None:
         checked_file_rows = [r for r in self._checked if not self._rows[r].is_group_header]
         group_keys = {self._rows[r].group_key for r in checked_file_rows}
-        self.selection_changed.emit(len(checked_file_rows), len(group_keys))
+        total_size = sum(self._rows[r].size_bytes for r in checked_file_rows)
+        self.selection_changed.emit(len(checked_file_rows), len(group_keys), total_size)
 
     # ------------------------------------------------------------------
     # QAbstractTableModel interface
@@ -211,16 +244,27 @@ class DuplicateTableModel(QAbstractTableModel):
                 COL_AI_REC:    row.ai_rec,
             }.get(col, "")
 
-        if role == Qt.ItemDataRole.CheckStateRole and col == COL_FILENAME and not row.is_group_header:
-            return Qt.CheckState.Checked if index.row() in self._checked else Qt.CheckState.Unchecked
+        if role == Qt.ItemDataRole.CheckStateRole and col == COL_FILENAME:
+            if row.is_group_header:
+                group_key = row.group_key
+                children = [i for i, r in enumerate(self._rows) if not r.is_group_header and r.group_key == group_key]
+                if not children:
+                    return Qt.CheckState.Unchecked
+                checked_count = sum(1 for i in children if i in self._checked)
+                if checked_count == 0:
+                    return Qt.CheckState.Unchecked
+                elif checked_count == len(children):
+                    return Qt.CheckState.Checked
+                else:
+                    return Qt.CheckState.PartiallyChecked
+            else:
+                return Qt.CheckState.Checked if index.row() in self._checked else Qt.CheckState.Unchecked
 
         if role == Qt.ItemDataRole.BackgroundRole:
             if row.is_group_header:
                 return QColor("#1e3a5f")  # dark blue header
             if row.status == "Deleted":
                 return QColor("#3a3a3a")
-            if row.ai_rec.startswith("✅"):
-                return QColor("#1a3d2b")  # dark green tint for agent pick
             return None
 
         if role == Qt.ItemDataRole.ForegroundRole:
@@ -228,22 +272,37 @@ class DuplicateTableModel(QAbstractTableModel):
                 return QColor("#ffffff")
             if row.status == "Deleted":
                 return QColor("#888888")
-            if row.ai_rec.startswith("✅"):
-                return QColor("#4caf50")
+            return None
+
+        if role == Qt.ItemDataRole.ToolTipRole:
+            if not row.is_group_header:
+                return row.path
             return None
 
         return None
 
     def setData(self, index: QModelIndex, value: Any, role: int = Qt.ItemDataRole.EditRole) -> bool:
         if role == Qt.ItemDataRole.CheckStateRole and index.column() == COL_FILENAME:
+            row_data = self._rows[index.row()]
+            if row_data.status.lower() == "deleted":
+                return False  # Prevent checking deleted items
+                
             checked = (value == Qt.CheckState.Checked.value or value == Qt.CheckState.Checked)
-            self.check_row(index.row(), checked)
+            if row_data.is_group_header:
+                group_key = row_data.group_key
+                for i, r in enumerate(self._rows):
+                    if not r.is_group_header and r.group_key == group_key:
+                        if r.status.lower() != "deleted":
+                            self.check_row(i, checked)
+            else:
+                self.check_row(index.row(), checked)
             return True
         return False
 
     def flags(self, index: QModelIndex) -> Qt.ItemFlag:
         base = Qt.ItemFlag.ItemIsEnabled | Qt.ItemFlag.ItemIsSelectable
         row = self._rows[index.row()] if index.row() < len(self._rows) else None
-        if row and not row.is_group_header and index.column() == COL_FILENAME:
-            base |= Qt.ItemFlag.ItemIsUserCheckable
+        if row and index.column() == COL_FILENAME:
+            if row.status.lower() != "deleted":
+                base |= Qt.ItemFlag.ItemIsUserCheckable
         return base

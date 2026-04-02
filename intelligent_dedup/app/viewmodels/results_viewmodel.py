@@ -146,6 +146,8 @@ class DuplicateTableModel(QAbstractTableModel):
             displayed += 1
 
         self.endResetModel()
+        self._emit_selection_changed()
+
 
     def mark_deleted(self, row: int) -> None:
         if 0 <= row < len(self._rows):

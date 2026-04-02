@@ -9,14 +9,20 @@
 - Added automatic saving of completed scan results and metadata using SQLAlchemy ORM.
 - Implemented auto-loading of the most recent prior session on application launch.
 - Added tracking and persistence for user checkbox selections and file deletion states between runs and application restarts.
+- Added UI layout and geometry persistence (saving/restoring window position and size) between sessions.
+- Added `run.bat` and `run.ps1` helper scripts for simplified application launch and virtual environment activation.
 
 ### Changed
 - Improved group-level checkbox toggling in the results table; selecting a group heading selects all children.
 - Implemented file category master checkbox syncing for streamlined extension filtering.
+- Improved results table display by ensuring columns are resizable to fit longer file paths.
+- Enhanced semantic matching path tracking persistence across multiple scans.
 
 ### Fixed
 - Resolved menu overlap display issues for the "Load Previous Session" action.
 - Resolved display artifacting by robustly clearing the UI viewing area upon initiating a fresh directory scan.
+- Fixed inaccuracies in lifetime statistics reporting and recoverable space calculation edge cases.
+- Enforced data integrity validation to prevent operations on previously deleted files.
 
 ## [v2.0.0] - Initial Enterprise Release
 ### Added

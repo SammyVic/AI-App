@@ -1,0 +1,96 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.13.5, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\vikas\.gemini\antigravity\scratch\intelligent_dedup\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\vikas\.gemini\antigravity\scratch\intelligent_dedup
+plugins: anyio-4.13.0, cov-7.1.0
+collecting ... collected 2 items
+
+tests/test_main_window_extended.py::test_close_event_saves_all_settings FAILED [ 50%]
+tests/test_main_window_extended.py::test_delete_checked_permanent_delete_success FAILED [100%]
+
+================================== FAILURES ===================================
+_____________________ test_close_event_saves_all_settings _____________________
+
+    def test_close_event_saves_all_settings():
+        win = _make_win()
+        win._persist_current_session_state = MagicMock()
+        win.saveGeometry.return_value = b"\x00"
+        win.saveState.return_value = b"\x00"
+        event = MagicMock()
+>       mw_module.MainWindow.closeEvent(win, event)
+
+tests\test_main_window_extended.py:326: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <MagicMock id='2124210193136'>, event = <MagicMock id='2124213629152'>
+
+    def closeEvent(self, event) -> None:
+        self._persist_current_session_state()
+        self._settings.setValue("geometry", self.saveGeometry())
+        self._settings.setValue("windowState", self.saveState())
+    
+        if hasattr(self, "_splitter"):
+            self._settings.setValue("main_splitter", self._splitter.saveState())
+        if hasattr(self, "_right_splitter"):
+            self._settings.setValue("right_splitter", self._right_splitter.saveState())
+        if hasattr(self, "_table"):
+            self._settings.setValue("table_header", self._table.horizontalHeader().saveState())
+        self._settings.setValue("folder", self._lbl_folder.text())
+        self._settings.setValue("min_size", self._spin_min_size.value())
+        self._settings.setValue("max_groups", self._spin_max_groups.value())
+        self._settings.setValue("algo_index", self._combo_algo.currentIndex())
+        self._settings.setValue("semantic", self._chk_semantic.isChecked())
+        self._settings.setValue("fuzzy", self._chk_fuzzy.isChecked())
+        self._settings.setValue("agent", self._chk_agent.isChecked())
+        self._settings.setValue("theme", self._theme.current_theme)
+>       super().closeEvent(event)
+        ^^^^^^^^^^^^^^^^^^
+E       TypeError: super(type, obj): obj (instance of MagicMock) is not an instance or subtype of type (MainWindow).
+
+app\views\main_window.py:1164: TypeError
+________________ test_delete_checked_permanent_delete_success _________________
+
+    def test_delete_checked_permanent_delete_success():
+        import tempfile
+        win = _make_win()
+        win._combo_delete_method.currentIndex.return_value = 1  # permanent
+    
+        with tempfile.NamedTemporaryFile(delete=False) as tmp:
+            tmp.write(b"data")
+            tmp_path = tmp.name
+    
+        win._results_model.get_checked_items.return_value = [(1, tmp_path)]
+        win._update_status_stats = MagicMock()
+        win._persist_current_session_state = MagicMock()
+    
+        mock_repo = MagicMock()
+        mock_session_obj = MagicMock()
+        mock_session_obj.__enter__ = MagicMock(return_value=mock_session_obj)
+        mock_session_obj.__exit__ = MagicMock(return_value=False)
+    
+        with patch("app.views.main_window.QMessageBox") as mock_mb, \
+             patch("app.models.database.init_db") as mock_init, \
+             patch("app.models.repository.ScanRepository", return_value=mock_repo):
+            from PyQt6.QtWidgets import QMessageBox as RealQMB
+            mock_mb.question.return_value = RealQMB.StandardButton.Yes
+            # init_db() returns a callable SessionLocal -> returns a session
+            mock_init.return_value.return_value = mock_session_obj
+    
+            mw_module.MainWindow._delete_checked(win)
+    
+        # File should now be deleted or repo called
+        # In either case, no crash
+>       assert not os.path.exists(tmp_path) or win._results_model.mark_deleted.called
+E       AssertionError: assert (not True or False)
+E        +  where True = <built-in function _path_exists>('C:\\Users\\vikas\\AppData\\Local\\Temp\\tmpq1w0kx4h')
+E        +    where <built-in function _path_exists> = <module 'ntpath' (frozen)>.exists
+E        +      where <module 'ntpath' (frozen)> = os.path
+E        +  and   False = <MagicMock name='mock._results_model.mark_deleted' id='2124214075808'>.called
+E        +    where <MagicMock name='mock._results_model.mark_deleted' id='2124214075808'> = <MagicMock name='mock._results_model' id='2124214085216'>.mark_deleted
+E        +      where <MagicMock name='mock._results_model' id='2124214085216'> = <MagicMock id='2124214077488'>._results_model
+
+tests\test_main_window_extended.py:473: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_main_window_extended.py::test_close_event_saves_all_settings
+FAILED tests/test_main_window_extended.py::test_delete_checked_permanent_delete_success
+============================== 2 failed in 0.56s ==============================

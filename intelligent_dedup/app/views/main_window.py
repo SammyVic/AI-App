@@ -366,11 +366,7 @@ class MainWindow(QMainWindow):
         self._scan_vm.scan_error.connect(self._on_scan_error)
         self._scan_vm.is_scanning_changed.connect(self._on_scanning_state)
 
-        self._results_model.selection_changed.connect(
-            lambda files, groups, size: self._lbl_selected.setText(
-                f"Selected: {files} files from {groups} groups ({size / (1024*1024):.2f} MB recoverable)"
-            )
-        )
+        self._results_model.selection_changed.connect(self._update_selection_metrics)
 
     # ==================================================================
     # Slots
@@ -742,10 +738,16 @@ class MainWindow(QMainWindow):
             import logging
             logging.error(f"Could not load lifetime stats for status bar: {exc}")
 
+    def _update_selection_metrics(self, files: int, groups: int, size: int) -> None:
+        self._lbl_selected.setText(
+            f"Selected: {files} files from {groups} groups ({size / (1024*1024):.2f} MB recoverable)"
+        )
+        self._btn_delete.setEnabled(files > 0)
+
     def _apply_search_filter(self) -> None:
-        from PyQt6.QtCore import QSortFilterProxyModel
-        # Simple text-based filter via proxy (future enhancement)
+        """Placeholder for future regex/search filtering."""
         pass
+
 
     def _show_run_summary(self) -> None:
         if not self._last_result:

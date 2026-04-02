@@ -1,0 +1,40 @@
+﻿..............F........FF..F                                             [100%]
+================================== FAILURES ===================================
+_____________________ test_close_event_saves_all_settings _____________________
+tests\test_main_window_extended.py:328: in test_close_event_saves_all_settings
+    mw_module.MainWindow.closeEvent(win, event)
+app\views\main_window.py:1164: in closeEvent
+    super().closeEvent(event)
+    ^^^^^^^^^^^^^^^^^^
+E   TypeError: super(type, obj): obj (instance of MagicMock) is not an instance or subtype of type (MainWindow).
+________________ test_delete_checked_permanent_delete_success _________________
+tests\test_main_window_extended.py:473: in test_delete_checked_permanent_delete_success
+    assert not os.path.exists(tmp_path)
+E   AssertionError: assert not True
+E    +  where True = <built-in function _path_exists>('C:\\Users\\vikas\\AppData\\Local\\Temp\\tmpidokknat')
+E    +    where <built-in function _path_exists> = <module 'ntpath' (frozen)>.exists
+E    +      where <module 'ntpath' (frozen)> = os.path
+_______________ test_delete_checked_missing_file_marks_deleted ________________
+tests\test_main_window_extended.py:496: in test_delete_checked_missing_file_marks_deleted
+    win._results_model.mark_deleted.assert_called_with(1)
+..\..\..\..\miniconda3\Lib\unittest\mock.py:970: in assert_called_with
+    raise AssertionError(error_message)
+E   AssertionError: expected call not found.
+E   Expected: mark_deleted(1)
+E     Actual: not called.
+______________________ test_show_run_summary_with_result ______________________
+tests\test_main_window_extended.py:561: in test_show_run_summary_with_result
+    with patch("app.views.main_window.QDialog") as mock_dlg, \
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\miniconda3\Lib\unittest\mock.py:1497: in __enter__
+    original, local = self.get_original()
+                      ^^^^^^^^^^^^^^^^^^^
+..\..\..\..\miniconda3\Lib\unittest\mock.py:1467: in get_original
+    raise AttributeError(
+E   AttributeError: <module 'app.views.main_window' from 'C:\\Users\\vikas\\.gemini\\antigravity\\scratch\\intelligent_dedup\\app\\views\\main_window.py'> does not have the attribute 'QDialog'
+=========================== short test summary info ===========================
+FAILED tests/test_main_window_extended.py::test_close_event_saves_all_settings
+FAILED tests/test_main_window_extended.py::test_delete_checked_permanent_delete_success
+FAILED tests/test_main_window_extended.py::test_delete_checked_missing_file_marks_deleted
+FAILED tests/test_main_window_extended.py::test_show_run_summary_with_result
+4 failed, 24 passed in 0.66s

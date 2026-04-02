@@ -104,9 +104,13 @@ class DuplicateTableModel(QAbstractTableModel):
             if max_groups > 0 and displayed >= max_groups:
                 break
 
-            decision = decisions.get(group.group_key) if decisions else None
-            ai_keep = decision.recommended_keep if decision else ""
-            conf = f" ({decision.confidence:.0%})" if decision else ""
+            decision = decisions.get(group.group_key) if isinstance(decisions, dict) else None
+            is_valid_decision = isinstance(decision, AgentDecision)
+            ai_keep = decision.recommended_keep if is_valid_decision else ""
+            conf = f" ({decision.confidence:.0%})" if is_valid_decision else ""
+
+
+
 
             # --- Group header row ---
             header_idx = len(self._rows)

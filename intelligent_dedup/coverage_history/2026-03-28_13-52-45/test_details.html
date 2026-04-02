@@ -1,0 +1,2379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Test Details - 2026-03-28 13-52-45</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117; --surface: #161b22; --border: #30363d; --text: #e6edf3;
+    --muted: #8b949e; --accent: #58a6ff; --pass: #3fb950; --fail: #f85149;
+  }
+  body { 
+    font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); 
+    margin: 0; padding: 40px; line-height: 1.5; overflow-y: auto;
+  }
+  .container { max-width: 1400px; margin: 0 auto; }
+  .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px; }
+  .btn-back {
+    text-decoration: none; background: var(--surface); border: 1px solid var(--border);
+    color: var(--accent); padding: 10px 20px; border-radius: 8px; font-weight: 600;
+    transition: background 0.2s;
+  }
+  .btn-back:hover { background: #1e2530; }
+  h1 { margin: 0; font-size: 24px; }
+  table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+  th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border); font-size: 13px; }
+  th { background: #1e2530; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .num { text-align: center; color: var(--muted); width: 40px; }
+  .status-badge { padding: 3px 8px; border-radius: 4px; font-weight: 700; font-size: 10px; }
+  .status-pass { background: rgba(63,185,80,0.15); color: var(--pass); }
+  .status-fail { background: rgba(248,81,73,0.15); color: var(--fail); }
+  .mono { font-family: 'Consolas', monospace; color: #79c0ff; font-size: 12px; word-break: break-all; }
+  .desc-cell { min-width: 300px; }
+  .test-desc { font-weight: 600; margin-bottom: 4px; color: #fff; }
+  .test-error { background: #21262d; padding: 10px; border-radius: 6px; color: #ff7b72; font-family: monospace; font-size: 12px; white-space: pre-wrap; margin-top: 8px; border: 1px solid #30363d; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Test Execution Details &mdash; 2026-03-28 13-52-45</h1>
+    <a href="../index.html" class="btn-back">&larr; Back to Dashboard</a>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th class="num">#</th>
+        <th>Status</th>
+        <th>Description</th>
+        <th>Test Name</th>
+        <th>Class Name</th>
+        <th>Test File Path</th>
+        <th>Tested Module</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr>
+            <td class="num">1</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_analyse_empty</td>
+            <td class="mono">tests.test_agents.TestRetentionAgent</td>
+            <td class="mono">tests/test_agents/TestRetentionAgent.py</td>
+            <td class="mono">app/agents/retention_agent.py</td>
+        </tr>
+        <tr>
+            <td class="num">2</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_canonical_preference</td>
+            <td class="mono">tests.test_agents.TestRetentionAgent</td>
+            <td class="mono">tests/test_agents/TestRetentionAgent.py</td>
+            <td class="mono">app/agents/retention_agent.py</td>
+        </tr>
+        <tr>
+            <td class="num">3</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This core test meticulously validates every file metadata record is correctly inserted and updated within the database schema while maintaining strict foreign key consistency and accurate byte size representation.</div>
+                
+            </td>
+            <td class="mono">test_filename_copy_penalisation</td>
+            <td class="mono">tests.test_agents.TestRetentionAgent</td>
+            <td class="mono">tests/test_agents/TestRetentionAgent.py</td>
+            <td class="mono">app/agents/retention_agent.py</td>
+        </tr>
+        <tr>
+            <td class="num">4</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_timestamp_preference</td>
+            <td class="mono">tests.test_agents.TestRetentionAgent</td>
+            <td class="mono">tests/test_agents/TestRetentionAgent.py</td>
+            <td class="mono">app/agents/retention_agent.py</td>
+        </tr>
+        <tr>
+            <td class="num">5</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This core test meticulously validates every file metadata record is correctly inserted and updated within the database schema while maintaining strict foreign key consistency and accurate byte size representation.</div>
+                
+            </td>
+            <td class="mono">test_fallback_missing_files</td>
+            <td class="mono">tests.test_agents.TestRetentionAgent</td>
+            <td class="mono">tests/test_agents/TestRetentionAgent.py</td>
+            <td class="mono">app/agents/retention_agent.py</td>
+        </tr>
+        <tr>
+            <td class="num">6</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This functional test meticulously verifies that the scan repository correctly handles large volumes of redundant file groups including their metadata hashes and space recovery statistics during complex deduplication processing runs.</div>
+                
+            </td>
+            <td class="mono">test_process_groups</td>
+            <td class="mono">tests.test_agents.TestReasoningEngine</td>
+            <td class="mono">tests/test_agents/TestReasoningEngine.py</td>
+            <td class="mono">app/agents/reasoning_engine.py</td>
+        </tr>
+        <tr>
+            <td class="num">7</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_summary_stats</td>
+            <td class="mono">tests.test_agents.TestReasoningEngine</td>
+            <td class="mono">tests/test_agents/TestReasoningEngine.py</td>
+            <td class="mono">app/agents/reasoning_engine.py</td>
+        </tr>
+        <tr>
+            <td class="num">8</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_export_log</td>
+            <td class="mono">tests.test_agents.TestReasoningEngine</td>
+            <td class="mono">tests/test_agents/TestReasoningEngine.py</td>
+            <td class="mono">app/agents/reasoning_engine.py</td>
+        </tr>
+        <tr>
+            <td class="num">9</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This command-line interface test meticulously validates that the terminal-based scanner correctly parses arguments and executes the full deduplication pipeline while providing clear status output and exit codes for automation.</div>
+                
+            </td>
+            <td class="mono">test_cli_help</td>
+            <td class="mono">tests.test_cli</td>
+            <td class="mono">tests/test_cli.py</td>
+            <td class="mono">cli.py</td>
+        </tr>
+        <tr>
+            <td class="num">10</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This command-line interface test meticulously validates that the terminal-based scanner correctly parses arguments and executes the full deduplication pipeline while providing clear status output and exit codes for automation.</div>
+                
+            </td>
+            <td class="mono">test_cli_scan_invalid_dir</td>
+            <td class="mono">tests.test_cli</td>
+            <td class="mono">tests/test_cli.py</td>
+            <td class="mono">cli.py</td>
+        </tr>
+        <tr>
+            <td class="num">11</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This command-line interface test meticulously validates that the terminal-based scanner correctly parses arguments and executes the full deduplication pipeline while providing clear status output and exit codes for automation.</div>
+                
+            </td>
+            <td class="mono">test_cli_stats_mock</td>
+            <td class="mono">tests.test_cli</td>
+            <td class="mono">tests/test_cli.py</td>
+            <td class="mono">cli.py</td>
+        </tr>
+        <tr>
+            <td class="num">12</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This command-line interface test meticulously validates that the terminal-based scanner correctly parses arguments and executes the full deduplication pipeline while providing clear status output and exit codes for automation.</div>
+                
+            </td>
+            <td class="mono">test_cli_agent_mock</td>
+            <td class="mono">tests.test_cli</td>
+            <td class="mono">tests/test_cli.py</td>
+            <td class="mono">cli.py</td>
+        </tr>
+        <tr>
+            <td class="num">13</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This command-line interface test meticulously validates that the terminal-based scanner correctly parses arguments and executes the full deduplication pipeline while providing clear status output and exit codes for automation.</div>
+                
+            </td>
+            <td class="mono">test_cli_scan_with_output_success</td>
+            <td class="mono">tests.test_cli_extended</td>
+            <td class="mono">tests/test_cli_extended.py</td>
+            <td class="mono">cli.py</td>
+        </tr>
+        <tr>
+            <td class="num">14</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This command-line interface test meticulously validates that the terminal-based scanner correctly parses arguments and executes the full deduplication pipeline while providing clear status output and exit codes for automation.</div>
+                
+            </td>
+            <td class="mono">test_cli_scan_db_error_still_completes</td>
+            <td class="mono">tests.test_cli_extended</td>
+            <td class="mono">tests/test_cli_extended.py</td>
+            <td class="mono">cli.py</td>
+        </tr>
+        <tr>
+            <td class="num">15</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This functional test meticulously verifies that the scan repository correctly handles large volumes of redundant file groups including their metadata hashes and space recovery statistics during complex deduplication processing runs.</div>
+                
+            </td>
+            <td class="mono">test_cli_agent_with_groups</td>
+            <td class="mono">tests.test_cli_extended</td>
+            <td class="mono">tests/test_cli_extended.py</td>
+            <td class="mono">cli.py</td>
+        </tr>
+        <tr>
+            <td class="num">16</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This command-line interface test meticulously validates that the terminal-based scanner correctly parses arguments and executes the full deduplication pipeline while providing clear status output and exit codes for automation.</div>
+                
+            </td>
+            <td class="mono">test_cli_agent_db_error</td>
+            <td class="mono">tests.test_cli_extended</td>
+            <td class="mono">tests/test_cli_extended.py</td>
+            <td class="mono">cli.py</td>
+        </tr>
+        <tr>
+            <td class="num">17</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This test case verifies that the ScanRepository correctly reports zero values for lifetime statistics when the database is freshly initialized and contains no recorded scan sessions or file deletion actions.</div>
+                
+            </td>
+            <td class="mono">test_repository_get_lifetime_stats_empty</td>
+            <td class="mono">tests.test_database_impact</td>
+            <td class="mono">tests/test_database_impact.py</td>
+            <td class="mono">app/models/database.py</td>
+        </tr>
+        <tr>
+            <td class="num">18</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This functional test validates that the repository can successfully persist an AI agent's recommendation for a duplicate group, including the specific file to keep and the associated confidence score for analysis.</div>
+                
+            </td>
+            <td class="mono">test_repository_update_group_agent_decision</td>
+            <td class="mono">tests.test_database_impact</td>
+            <td class="mono">tests/test_database_impact.py</td>
+            <td class="mono">app/models/database.py</td>
+        </tr>
+        <tr>
+            <td class="num">19</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This test ensures that the session listing functionality correctly implements limit-based paging and provides results in descending chronological order, allowing the user interface to efficiently display recent scan history data.</div>
+                
+            </td>
+            <td class="mono">test_repository_list_sessions_paging</td>
+            <td class="mono">tests.test_database_impact</td>
+            <td class="mono">tests/test_database_impact.py</td>
+            <td class="mono">app/models/database.py</td>
+        </tr>
+        <tr>
+            <td class="num">20</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This test case confirms the robustness of the action logging system by verifying that it gracefully handles operation logging even when provided with minimal data, ensuring comprehensive audit trail persistence always.</div>
+                
+            </td>
+            <td class="mono">test_repository_log_action_error</td>
+            <td class="mono">tests.test_database_impact</td>
+            <td class="mono">tests/test_database_impact.py</td>
+            <td class="mono">app/models/database.py</td>
+        </tr>
+        <tr>
+            <td class="num">21</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This modal test meticulously validates the session loading and configuration dialogs ensuring that user inputs are correctly captured and validated before being passed to the core scanning and reporting engines.</div>
+                
+            </td>
+            <td class="mono">test_zero</td>
+            <td class="mono">tests.test_dialogs.TestFmtGb</td>
+            <td class="mono">tests/test_dialogs/TestFmtGb.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">22</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This modal test meticulously validates the session loading and configuration dialogs ensuring that user inputs are correctly captured and validated before being passed to the core scanning and reporting engines.</div>
+                
+            </td>
+            <td class="mono">test_one_gb</td>
+            <td class="mono">tests.test_dialogs.TestFmtGb</td>
+            <td class="mono">tests/test_dialogs/TestFmtGb.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">23</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This modal test meticulously validates the session loading and configuration dialogs ensuring that user inputs are correctly captured and validated before being passed to the core scanning and reporting engines.</div>
+                
+            </td>
+            <td class="mono">test_half_gb</td>
+            <td class="mono">tests.test_dialogs.TestFmtGb</td>
+            <td class="mono">tests/test_dialogs/TestFmtGb.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">24</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This modal test meticulously validates the session loading and configuration dialogs ensuring that user inputs are correctly captured and validated before being passed to the core scanning and reporting engines.</div>
+                
+            </td>
+            <td class="mono">test_large</td>
+            <td class="mono">tests.test_dialogs.TestFmtGb</td>
+            <td class="mono">tests/test_dialogs/TestFmtGb.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">25</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">Verify all expected stat keys are used from the stats dict.</div>
+                
+            </td>
+            <td class="mono">test_all_stats_keys_present</td>
+            <td class="mono">tests.test_dialogs.TestStatsDialogData</td>
+            <td class="mono">tests/test_dialogs/TestStatsDialogData.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">26</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This modal test meticulously validates the session loading and configuration dialogs ensuring that user inputs are correctly captured and validated before being passed to the core scanning and reporting engines.</div>
+                
+            </td>
+            <td class="mono">test_empty_stats_uses_defaults</td>
+            <td class="mono">tests.test_dialogs.TestStatsDialogData</td>
+            <td class="mono">tests/test_dialogs/TestStatsDialogData.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">27</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This modal test meticulously validates the session loading and configuration dialogs ensuring that user inputs are correctly captured and validated before being passed to the core scanning and reporting engines.</div>
+                
+            </td>
+            <td class="mono">test_on_accept_valid_row</td>
+            <td class="mono">tests.test_dialogs.TestLoadSessionDialogOnAccept</td>
+            <td class="mono">tests/test_dialogs/TestLoadSessionDialogOnAccept.py</td>
+            <td class="mono">app/views/dialogs/load_session_dialog.py</td>
+        </tr>
+        <tr>
+            <td class="num">28</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This modal test meticulously validates the session loading and configuration dialogs ensuring that user inputs are correctly captured and validated before being passed to the core scanning and reporting engines.</div>
+                
+            </td>
+            <td class="mono">test_on_accept_no_row_selected</td>
+            <td class="mono">tests.test_dialogs.TestLoadSessionDialogOnAccept</td>
+            <td class="mono">tests/test_dialogs/TestLoadSessionDialogOnAccept.py</td>
+            <td class="mono">app/views/dialogs/load_session_dialog.py</td>
+        </tr>
+        <tr>
+            <td class="num">29</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_on_accept_second_session</td>
+            <td class="mono">tests.test_dialogs.TestLoadSessionDialogOnAccept</td>
+            <td class="mono">tests/test_dialogs/TestLoadSessionDialogOnAccept.py</td>
+            <td class="mono">app/views/dialogs/load_session_dialog.py</td>
+        </tr>
+        <tr>
+            <td class="num">30</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">Verify _sessions list is stored on dialog.</div>
+                
+            </td>
+            <td class="mono">test_sessions_list_stored</td>
+            <td class="mono">tests.test_dialogs.TestLoadSessionDialogOnAccept</td>
+            <td class="mono">tests/test_dialogs/TestLoadSessionDialogOnAccept.py</td>
+            <td class="mono">app/views/dialogs/load_session_dialog.py</td>
+        </tr>
+        <tr>
+            <td class="num">31</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">Exercise StatsDialog.__init__ and table population.</div>
+                
+            </td>
+            <td class="mono">test_stats_dialog_full_init</td>
+            <td class="mono">tests.test_dialogs_impact</td>
+            <td class="mono">tests/test_dialogs_impact.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">32</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">Verify StatsDialog handles missing stats dict gracefully.</div>
+                
+            </td>
+            <td class="mono">test_stats_dialog_empty_stats</td>
+            <td class="mono">tests.test_dialogs_impact</td>
+            <td class="mono">tests/test_dialogs_impact.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">33</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">Exercise LoadSessionDialog.__init__ and _build_ui.</div>
+                
+            </td>
+            <td class="mono">test_load_session_dialog_full_init</td>
+            <td class="mono">tests.test_dialogs_impact</td>
+            <td class="mono">tests/test_dialogs_impact.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">34</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">Exercise _on_accept when a row is selected or not.</div>
+                
+            </td>
+            <td class="mono">test_load_session_dialog_selection</td>
+            <td class="mono">tests.test_dialogs_impact</td>
+            <td class="mono">tests/test_dialogs_impact.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">35</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This test case meticulously validates the FileScanner logic ensuring it correctly identifies all candidate files while respecting complex exclusion patterns and system-level folder protections across diverse operating system environments.</div>
+                
+            </td>
+            <td class="mono">test_scanner_traversal</td>
+            <td class="mono">tests.test_engine.TestScanner</td>
+            <td class="mono">tests/test_engine/TestScanner.py</td>
+            <td class="mono">app/engine/scanner.py</td>
+        </tr>
+        <tr>
+            <td class="num">36</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This test case meticulously validates the FileScanner logic ensuring it correctly identifies all candidate files while respecting complex exclusion patterns and system-level folder protections across diverse operating system environments.</div>
+                
+            </td>
+            <td class="mono">test_scanner_exclusion</td>
+            <td class="mono">tests.test_engine.TestScanner</td>
+            <td class="mono">tests/test_engine/TestScanner.py</td>
+            <td class="mono">app/engine/scanner.py</td>
+        </tr>
+        <tr>
+            <td class="num">37</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This test case meticulously validates the FileScanner logic ensuring it correctly identifies all candidate files while respecting complex exclusion patterns and system-level folder protections across diverse operating system environments.</div>
+                
+            </td>
+            <td class="mono">test_scanner_is_excluded</td>
+            <td class="mono">tests.test_engine.TestScanner</td>
+            <td class="mono">tests/test_engine/TestScanner.py</td>
+            <td class="mono">app/engine/scanner.py</td>
+        </tr>
+        <tr>
+            <td class="num">38</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This test case meticulously validates the FileScanner logic ensuring it correctly identifies all candidate files while respecting complex exclusion patterns and system-level folder protections across diverse operating system environments.</div>
+                
+            </td>
+            <td class="mono">test_scanner_rust_fallback</td>
+            <td class="mono">tests.test_engine.TestScanner</td>
+            <td class="mono">tests/test_engine/TestScanner.py</td>
+            <td class="mono">app/engine/scanner.py</td>
+        </tr>
+        <tr>
+            <td class="num">39</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This test case meticulously validates the FileScanner logic ensuring it correctly identifies all candidate files while respecting complex exclusion patterns and system-level folder protections across diverse operating system environments.</div>
+                
+            </td>
+            <td class="mono">test_scanner_cancel</td>
+            <td class="mono">tests.test_engine.TestScanner</td>
+            <td class="mono">tests/test_engine/TestScanner.py</td>
+            <td class="mono">app/engine/scanner.py</td>
+        </tr>
+        <tr>
+            <td class="num">40</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This core test meticulously validates every file metadata record is correctly inserted and updated within the database schema while maintaining strict foreign key consistency and accurate byte size representation.</div>
+                
+            </td>
+            <td class="mono">test_file_info_props</td>
+            <td class="mono">tests.test_engine.TestScanner</td>
+            <td class="mono">tests/test_engine/TestScanner.py</td>
+            <td class="mono">app/engine/scanner.py</td>
+        </tr>
+        <tr>
+            <td class="num">41</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This performance-oriented check meticulously validates the FileHasher component's ability to efficiently compute SHA-256 signatures for diverse file buffers while maintaining thread-safe access to the underlying shared deduplication database session.</div>
+                
+            </td>
+            <td class="mono">test_hasher_basic</td>
+            <td class="mono">tests.test_engine.TestHasher</td>
+            <td class="mono">tests/test_engine/TestHasher.py</td>
+            <td class="mono">app/engine/hasher.py</td>
+        </tr>
+        <tr>
+            <td class="num">42</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This performance-oriented check meticulously validates the FileHasher component's ability to efficiently compute SHA-256 signatures for diverse file buffers while maintaining thread-safe access to the underlying shared deduplication database session.</div>
+                
+            </td>
+            <td class="mono">test_hasher_unsupported_algo</td>
+            <td class="mono">tests.test_engine.TestHasher</td>
+            <td class="mono">tests/test_engine/TestHasher.py</td>
+            <td class="mono">app/engine/hasher.py</td>
+        </tr>
+        <tr>
+            <td class="num">43</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This performance-oriented check meticulously validates the FileHasher component's ability to efficiently compute SHA-256 signatures for diverse file buffers while maintaining thread-safe access to the underlying shared deduplication database session.</div>
+                
+            </td>
+            <td class="mono">test_hasher_error_handling</td>
+            <td class="mono">tests.test_engine.TestHasher</td>
+            <td class="mono">tests/test_engine/TestHasher.py</td>
+            <td class="mono">app/engine/hasher.py</td>
+        </tr>
+        <tr>
+            <td class="num">44</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This performance-oriented check meticulously validates the FileHasher component's ability to efficiently compute SHA-256 signatures for diverse file buffers while maintaining thread-safe access to the underlying shared deduplication database session.</div>
+                
+            </td>
+            <td class="mono">test_hasher_md5</td>
+            <td class="mono">tests.test_engine.TestHasher</td>
+            <td class="mono">tests/test_engine/TestHasher.py</td>
+            <td class="mono">app/engine/hasher.py</td>
+        </tr>
+        <tr>
+            <td class="num">45</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This performance-oriented check meticulously validates the FileHasher component's ability to efficiently compute SHA-256 signatures for diverse file buffers while maintaining thread-safe access to the underlying shared deduplication database session.</div>
+                
+            </td>
+            <td class="mono">test_hasher_cancel</td>
+            <td class="mono">tests.test_engine.TestHasher</td>
+            <td class="mono">tests/test_engine/TestHasher.py</td>
+            <td class="mono">app/engine/hasher.py</td>
+        </tr>
+        <tr>
+            <td class="num">46</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_deduplicator_simple</td>
+            <td class="mono">tests.test_engine.TestDeduplicator</td>
+            <td class="mono">tests/test_engine/TestDeduplicator.py</td>
+            <td class="mono">app/engine/deduplicator.py</td>
+        </tr>
+        <tr>
+            <td class="num">47</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_deduplicator_fuzzy</td>
+            <td class="mono">tests.test_engine.TestDeduplicator</td>
+            <td class="mono">tests/test_engine/TestDeduplicator.py</td>
+            <td class="mono">app/engine/deduplicator.py</td>
+        </tr>
+        <tr>
+            <td class="num">48</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_deduplicator_cancel</td>
+            <td class="mono">tests.test_engine.TestDeduplicator</td>
+            <td class="mono">tests/test_engine/TestDeduplicator.py</td>
+            <td class="mono">app/engine/deduplicator.py</td>
+        </tr>
+        <tr>
+            <td class="num">49</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_pass3_semantic_success</td>
+            <td class="mono">tests.test_engine_extended.TestDeduplicatorExtended</td>
+            <td class="mono">tests/test_engine_extended/TestDeduplicatorExtended.py</td>
+            <td class="mono">app/engine/deduplicator.py</td>
+        </tr>
+        <tr>
+            <td class="num">50</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_pass3_semantic_import_error</td>
+            <td class="mono">tests.test_engine_extended.TestDeduplicatorExtended</td>
+            <td class="mono">tests/test_engine_extended/TestDeduplicatorExtended.py</td>
+            <td class="mono">app/engine/deduplicator.py</td>
+        </tr>
+        <tr>
+            <td class="num">51</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_embed_batch_worker_image</td>
+            <td class="mono">tests.test_engine_extended.TestDeduplicatorExtended</td>
+            <td class="mono">tests/test_engine_extended/TestDeduplicatorExtended.py</td>
+            <td class="mono">app/engine/deduplicator.py</td>
+        </tr>
+        <tr>
+            <td class="num">52</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_embed_batch_worker_error</td>
+            <td class="mono">tests.test_engine_extended.TestDeduplicatorExtended</td>
+            <td class="mono">tests/test_engine_extended/TestDeduplicatorExtended.py</td>
+            <td class="mono">app/engine/deduplicator.py</td>
+        </tr>
+        <tr>
+            <td class="num">53</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This performance-oriented check meticulously validates the FileHasher component's ability to efficiently compute SHA-256 signatures for diverse file buffers while maintaining thread-safe access to the underlying shared deduplication database session.</div>
+                
+            </td>
+            <td class="mono">test_hasher_partial_cancellation</td>
+            <td class="mono">tests.test_engine_extended.TestHasherExtended</td>
+            <td class="mono">tests/test_engine_extended/TestHasherExtended.py</td>
+            <td class="mono">app/engine/hasher.py</td>
+        </tr>
+        <tr>
+            <td class="num">54</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This test case meticulously validates the FileScanner logic ensuring it correctly identifies all candidate files while respecting complex exclusion patterns and system-level folder protections across diverse operating system environments.</div>
+                
+            </td>
+            <td class="mono">test_scanner_python_os_error</td>
+            <td class="mono">tests.test_engine_extended.TestScannerExtended</td>
+            <td class="mono">tests/test_engine_extended/TestScannerExtended.py</td>
+            <td class="mono">app/engine/scanner.py</td>
+        </tr>
+        <tr>
+            <td class="num">55</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This test case meticulously validates the FileScanner logic ensuring it correctly identifies all candidate files while respecting complex exclusion patterns and system-level folder protections across diverse operating system environments.</div>
+                
+            </td>
+            <td class="mono">test_scanner_is_excluded_branches</td>
+            <td class="mono">tests.test_engine_extended.TestScannerExtended</td>
+            <td class="mono">tests/test_engine_extended/TestScannerExtended.py</td>
+            <td class="mono">app/engine/scanner.py</td>
+        </tr>
+        <tr>
+            <td class="num">56</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This core test meticulously validates every file metadata record is correctly inserted and updated within the database schema while maintaining strict foreign key consistency and accurate byte size representation.</div>
+                
+            </td>
+            <td class="mono">test_file_categories_structure</td>
+            <td class="mono">tests.test_main_window</td>
+            <td class="mono">tests/test_main_window.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">57</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_high_confidence</td>
+            <td class="mono">tests.test_main_window.TestRenderAgentPanel</td>
+            <td class="mono">tests/test_main_window/TestRenderAgentPanel.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">58</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_medium_confidence</td>
+            <td class="mono">tests.test_main_window.TestRenderAgentPanel</td>
+            <td class="mono">tests/test_main_window/TestRenderAgentPanel.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">59</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_low_confidence</td>
+            <td class="mono">tests.test_main_window.TestRenderAgentPanel</td>
+            <td class="mono">tests/test_main_window/TestRenderAgentPanel.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">60</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_empty_decisions</td>
+            <td class="mono">tests.test_main_window.TestRenderAgentPanel</td>
+            <td class="mono">tests/test_main_window/TestRenderAgentPanel.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">61</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_many_decisions_capped_at_50</td>
+            <td class="mono">tests.test_main_window.TestRenderAgentPanel</td>
+            <td class="mono">tests/test_main_window/TestRenderAgentPanel.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">62</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_nonzero_selection</td>
+            <td class="mono">tests.test_main_window.TestUpdateSelectionMetrics</td>
+            <td class="mono">tests/test_main_window/TestUpdateSelectionMetrics.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">63</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_zero_selection_disables_button</td>
+            <td class="mono">tests.test_main_window.TestUpdateSelectionMetrics</td>
+            <td class="mono">tests/test_main_window/TestUpdateSelectionMetrics.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">64</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_large_size_formatting</td>
+            <td class="mono">tests.test_main_window.TestUpdateSelectionMetrics</td>
+            <td class="mono">tests/test_main_window/TestUpdateSelectionMetrics.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">65</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_scanning_true</td>
+            <td class="mono">tests.test_main_window.TestOnScanningState</td>
+            <td class="mono">tests/test_main_window/TestOnScanningState.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">66</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_scanning_false</td>
+            <td class="mono">tests.test_main_window.TestOnScanningState</td>
+            <td class="mono">tests/test_main_window/TestOnScanningState.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">67</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_with_total</td>
+            <td class="mono">tests.test_main_window.TestOnProgress</td>
+            <td class="mono">tests/test_main_window/TestOnProgress.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">68</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_zero_total_indeterminate</td>
+            <td class="mono">tests.test_main_window.TestOnProgress</td>
+            <td class="mono">tests/test_main_window/TestOnProgress.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">69</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_normal_stats</td>
+            <td class="mono">tests.test_main_window.TestUpdateStatusStats</td>
+            <td class="mono">tests/test_main_window/TestUpdateStatusStats.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">70</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_db_error_does_not_raise</td>
+            <td class="mono">tests.test_main_window.TestUpdateStatusStats</td>
+            <td class="mono">tests/test_main_window/TestUpdateStatusStats.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">71</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_missing_label_attr_skips</td>
+            <td class="mono">tests.test_main_window.TestUpdateStatusStats</td>
+            <td class="mono">tests/test_main_window/TestUpdateStatusStats.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">72</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_saves_to_db_and_loads_model</td>
+            <td class="mono">tests.test_main_window.TestOnScanFinished</td>
+            <td class="mono">tests/test_main_window/TestOnScanFinished.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">73</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_agent_disabled_skips_reasoning</td>
+            <td class="mono">tests.test_main_window.TestOnScanFinished</td>
+            <td class="mono">tests/test_main_window/TestOnScanFinished.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">74</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_db_failure_still_loads_model</td>
+            <td class="mono">tests.test_main_window.TestOnScanFinished</td>
+            <td class="mono">tests/test_main_window/TestOnScanFinished.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">75</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_invalid_folder_shows_warning</td>
+            <td class="mono">tests.test_main_window.TestStartScan</td>
+            <td class="mono">tests/test_main_window/TestStartScan.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">76</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_no_extensions_shows_warning</td>
+            <td class="mono">tests.test_main_window.TestStartScan</td>
+            <td class="mono">tests/test_main_window/TestStartScan.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">77</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_valid_folder_starts_scan</td>
+            <td class="mono">tests.test_main_window.TestStartScan</td>
+            <td class="mono">tests/test_main_window/TestStartScan.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">78</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_apply_search_filter_is_noop</td>
+            <td class="mono">tests.test_main_window</td>
+            <td class="mono">tests/test_main_window.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">79</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This core test meticulously validates every file metadata record is correctly inserted and updated within the database schema while maintaining strict foreign key consistency and accurate byte size representation.</div>
+                
+            </td>
+            <td class="mono">test_apply_profile_is_noop</td>
+            <td class="mono">tests.test_main_window</td>
+            <td class="mono">tests/test_main_window.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">80</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_no_session_id_returns_early</td>
+            <td class="mono">tests.test_main_window.TestPersistCurrentSessionState</td>
+            <td class="mono">tests/test_main_window/TestPersistCurrentSessionState.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">81</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_with_session_id_calls_repo</td>
+            <td class="mono">tests.test_main_window.TestPersistCurrentSessionState</td>
+            <td class="mono">tests/test_main_window/TestPersistCurrentSessionState.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">82</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_drop_event_sets_folder</td>
+            <td class="mono">tests.test_main_window</td>
+            <td class="mono">tests/test_main_window.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">83</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_drop_event_ignores_non_dir</td>
+            <td class="mono">tests.test_main_window</td>
+            <td class="mono">tests/test_main_window.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">84</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_drop_event_empty_urls</td>
+            <td class="mono">tests.test_main_window</td>
+            <td class="mono">tests/test_main_window.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">85</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_drag_enter_accepts_urls</td>
+            <td class="mono">tests.test_main_window</td>
+            <td class="mono">tests/test_main_window.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">86</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_drag_enter_ignores_non_urls</td>
+            <td class="mono">tests.test_main_window</td>
+            <td class="mono">tests/test_main_window.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">87</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_show_run_summary_no_result</td>
+            <td class="mono">tests.test_main_window</td>
+            <td class="mono">tests/test_main_window.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">88</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_export_agent_log_no_engine</td>
+            <td class="mono">tests.test_main_window</td>
+            <td class="mono">tests/test_main_window.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">89</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_load_latest_session_db_error</td>
+            <td class="mono">tests.test_main_window</td>
+            <td class="mono">tests/test_main_window.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">90</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_show_stats_db_error</td>
+            <td class="mono">tests.test_main_window</td>
+            <td class="mono">tests/test_main_window.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">91</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_on_scan_error_shows_critical</td>
+            <td class="mono">tests.test_main_window</td>
+            <td class="mono">tests/test_main_window.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">92</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This core test meticulously validates every file metadata record is correctly inserted and updated within the database schema while maintaining strict foreign key consistency and accurate byte size representation.</div>
+                
+            </td>
+            <td class="mono">test_export_csv_writes_file</td>
+            <td class="mono">tests.test_main_window</td>
+            <td class="mono">tests/test_main_window.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">93</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_export_csv_cancelled_returns</td>
+            <td class="mono">tests.test_main_window</td>
+            <td class="mono">tests/test_main_window.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">94</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_toggle_panel_visible_to_hidden</td>
+            <td class="mono">tests.test_main_window</td>
+            <td class="mono">tests/test_main_window.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">95</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_toggle_panel_hidden_to_visible</td>
+            <td class="mono">tests.test_main_window</td>
+            <td class="mono">tests/test_main_window.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">96</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_toggle_panel_no_widget</td>
+            <td class="mono">tests.test_main_window</td>
+            <td class="mono">tests/test_main_window.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">97</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_delete_checked_nothing_checked</td>
+            <td class="mono">tests.test_main_window</td>
+            <td class="mono">tests/test_main_window.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">98</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_delete_checked_user_cancels</td>
+            <td class="mono">tests.test_main_window</td>
+            <td class="mono">tests/test_main_window.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">99</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_restore_session_from_db_missing_session</td>
+            <td class="mono">tests.test_main_window</td>
+            <td class="mono">tests/test_main_window.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">100</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_restore_session_from_db_valid</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">101</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_restore_session_from_db_with_user_state_json</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">102</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_invalid_index</td>
+            <td class="mono">tests.test_main_window_extended.TestOnTableSelection</td>
+            <td class="mono">tests/test_main_window_extended/TestOnTableSelection.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">103</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This functional test meticulously verifies that the scan repository correctly handles large volumes of redundant file groups including their metadata hashes and space recovery statistics during complex deduplication processing runs.</div>
+                
+            </td>
+            <td class="mono">test_group_header_row</td>
+            <td class="mono">tests.test_main_window_extended.TestOnTableSelection</td>
+            <td class="mono">tests/test_main_window_extended/TestOnTableSelection.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">104</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This core test meticulously validates every file metadata record is correctly inserted and updated within the database schema while maintaining strict foreign key consistency and accurate byte size representation.</div>
+                
+            </td>
+            <td class="mono">test_deleted_file_shows_deleted_message</td>
+            <td class="mono">tests.test_main_window_extended.TestOnTableSelection</td>
+            <td class="mono">tests/test_main_window_extended/TestOnTableSelection.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">105</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This core test meticulously validates every file metadata record is correctly inserted and updated within the database schema while maintaining strict foreign key consistency and accurate byte size representation.</div>
+                
+            </td>
+            <td class="mono">test_existing_text_file</td>
+            <td class="mono">tests.test_main_window_extended.TestOnTableSelection</td>
+            <td class="mono">tests/test_main_window_extended/TestOnTableSelection.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">106</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_row_out_of_range</td>
+            <td class="mono">tests.test_main_window_extended.TestOnTableSelection</td>
+            <td class="mono">tests/test_main_window_extended/TestOnTableSelection.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">107</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This audit test meticulously validates that every file deletion or keep operation is correctly recorded in the history log providing a complete and verifiable trail of all system-level modifications.</div>
+                
+            </td>
+            <td class="mono">test_action_with_shortcut</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">108</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This audit test meticulously validates that every file deletion or keep operation is correctly recorded in the history log providing a complete and verifiable trail of all system-level modifications.</div>
+                
+            </td>
+            <td class="mono">test_action_without_shortcut</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">109</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_restore_settings_persisted_folder</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">110</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_restore_settings_no_folder</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">111</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_restore_settings_nonexistent_folder</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">112</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_restore_geometry_with_data</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">113</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_restore_geometry_empty</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">114</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_close_event_saves_all_settings</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">115</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This core test meticulously validates every file metadata record is correctly inserted and updated within the database schema while maintaining strict foreign key consistency and accurate byte size representation.</div>
+                
+            </td>
+            <td class="mono">test_show_changelog_missing_file</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">116</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This core test meticulously validates every file metadata record is correctly inserted and updated within the database schema while maintaining strict foreign key consistency and accurate byte size representation.</div>
+                
+            </td>
+            <td class="mono">test_show_features_missing_file</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">117</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_export_agent_log_with_engine</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">118</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_export_agent_log_cancelled</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">119</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_load_latest_session_with_session</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">120</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_load_latest_session_no_session</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">121</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_show_stats_success</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">122</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_show_stats_error</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">123</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_delete_checked_permanent_delete_success</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">124</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This core test meticulously validates every file metadata record is correctly inserted and updated within the database schema while maintaining strict foreign key consistency and accurate byte size representation.</div>
+                
+            </td>
+            <td class="mono">test_delete_checked_missing_file_marks_deleted</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">125</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_persist_session_state_with_deleted_rows</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">126</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_persist_session_state_db_error</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">127</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_show_run_summary_with_result</td>
+            <td class="mono">tests.test_main_window_extended</td>
+            <td class="mono">tests/test_main_window_extended.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">128</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_main_window_init</td>
+            <td class="mono">tests.test_main_window_impact</td>
+            <td class="mono">tests/test_main_window_impact.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">129</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_on_scan_finished_integration</td>
+            <td class="mono">tests.test_main_window_impact</td>
+            <td class="mono">tests/test_main_window_impact.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">130</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_delete_checked_integration</td>
+            <td class="mono">tests.test_main_window_impact</td>
+            <td class="mono">tests/test_main_window_impact.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">131</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_on_progress_update</td>
+            <td class="mono">tests.test_main_window_impact</td>
+            <td class="mono">tests/test_main_window_impact.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">132</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_scanner_extension_filtering_coverage</td>
+            <td class="mono">tests.test_main_window_impact</td>
+            <td class="mono">tests/test_main_window_impact.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">133</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_scanner_python_fallback_branches</td>
+            <td class="mono">tests.test_main_window_impact</td>
+            <td class="mono">tests/test_main_window_impact.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">134</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This audit test meticulously validates that every file deletion or keep operation is correctly recorded in the history log providing a complete and verifiable trail of all system-level modifications.</div>
+                
+            </td>
+            <td class="mono">test_table_interaction_preview</td>
+            <td class="mono">tests.test_main_window_impact</td>
+            <td class="mono">tests/test_main_window_impact.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">135</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_on_table_context_menu</td>
+            <td class="mono">tests.test_main_window_impact</td>
+            <td class="mono">tests/test_main_window_impact.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">136</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This integration test exercises the MainWindow UI layer meticulously ensuring that button state transitions occur correctly based on the underlying viewmodel signal emissions during long running background scanning operations.</div>
+                
+            </td>
+            <td class="mono">test_toggle_panel</td>
+            <td class="mono">tests.test_main_window_impact</td>
+            <td class="mono">tests/test_main_window_impact.py</td>
+            <td class="mono">app/views/main_window.py</td>
+        </tr>
+        <tr>
+            <td class="num">137</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This advanced machine learning test meticulously validates the embedding generation and vector similarity search logic for identifying visually similar or contextually related files in large and diverse dataset collections.</div>
+                
+            </td>
+            <td class="mono">test_vector_index_init_errors</td>
+            <td class="mono">tests.test_ml.TestVectorIndex</td>
+            <td class="mono">tests/test_ml/TestVectorIndex.py</td>
+            <td class="mono">app/ml/vector_index.py</td>
+        </tr>
+        <tr>
+            <td class="num">138</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This advanced machine learning test meticulously validates the embedding generation and vector similarity search logic for identifying visually similar or contextually related files in large and diverse dataset collections.</div>
+                
+            </td>
+            <td class="mono">test_cosine_similarity</td>
+            <td class="mono">tests.test_ml.TestVectorIndex</td>
+            <td class="mono">tests/test_ml/TestVectorIndex.py</td>
+            <td class="mono">app/ml/vector_index.py</td>
+        </tr>
+        <tr>
+            <td class="num">139</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This advanced machine learning test meticulously validates the embedding generation and vector similarity search logic for identifying visually similar or contextually related files in large and diverse dataset collections.</div>
+                
+            </td>
+            <td class="mono">test_find_similar_pairs</td>
+            <td class="mono">tests.test_ml.TestVectorIndex</td>
+            <td class="mono">tests/test_ml/TestVectorIndex.py</td>
+            <td class="mono">app/ml/vector_index.py</td>
+        </tr>
+        <tr>
+            <td class="num">140</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This advanced machine learning test meticulously validates the embedding generation and vector similarity search logic for identifying visually similar or contextually related files in large and diverse dataset collections.</div>
+                
+            </td>
+            <td class="mono">test_clustering</td>
+            <td class="mono">tests.test_ml.TestVectorIndex</td>
+            <td class="mono">tests/test_ml/TestVectorIndex.py</td>
+            <td class="mono">app/ml/vector_index.py</td>
+        </tr>
+        <tr>
+            <td class="num">141</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This advanced machine learning test meticulously validates the embedding generation and vector similarity search logic for identifying visually similar or contextually related files in large and diverse dataset collections.</div>
+                
+            </td>
+            <td class="mono">test_query</td>
+            <td class="mono">tests.test_ml.TestVectorIndex</td>
+            <td class="mono">tests/test_ml/TestVectorIndex.py</td>
+            <td class="mono">app/ml/vector_index.py</td>
+        </tr>
+        <tr>
+            <td class="num">142</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This advanced machine learning test meticulously validates the embedding generation and vector similarity search logic for identifying visually similar or contextually related files in large and diverse dataset collections.</div>
+                
+            </td>
+            <td class="mono">test_image_embedder_mock</td>
+            <td class="mono">tests.test_ml.TestEmbedders</td>
+            <td class="mono">tests/test_ml/TestEmbedders.py</td>
+            <td class="mono">app/ml/embedder.py</td>
+        </tr>
+        <tr>
+            <td class="num">143</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This advanced machine learning test meticulously validates the embedding generation and vector similarity search logic for identifying visually similar or contextually related files in large and diverse dataset collections.</div>
+                
+            </td>
+            <td class="mono">test_text_embedder_mock</td>
+            <td class="mono">tests.test_ml.TestEmbedders</td>
+            <td class="mono">tests/test_ml/TestEmbedders.py</td>
+            <td class="mono">app/ml/embedder.py</td>
+        </tr>
+        <tr>
+            <td class="num">144</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_create_session</td>
+            <td class="mono">tests.test_models.TestScanSession</td>
+            <td class="mono">tests/test_models/TestScanSession.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">145</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_complete_session</td>
+            <td class="mono">tests.test_models.TestScanSession</td>
+            <td class="mono">tests/test_models/TestScanSession.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">146</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_fail_session</td>
+            <td class="mono">tests.test_models.TestScanSession</td>
+            <td class="mono">tests/test_models/TestScanSession.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">147</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_list_sessions_only_completed</td>
+            <td class="mono">tests.test_models.TestScanSession</td>
+            <td class="mono">tests/test_models/TestScanSession.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">148</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_cancel_session</td>
+            <td class="mono">tests.test_models.TestScanSession</td>
+            <td class="mono">tests/test_models/TestScanSession.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">149</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_get_sessions_in_range</td>
+            <td class="mono">tests.test_models.TestScanSession</td>
+            <td class="mono">tests/test_models/TestScanSession.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">150</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_get_latest_session_empty</td>
+            <td class="mono">tests.test_models.TestScanSession</td>
+            <td class="mono">tests/test_models/TestScanSession.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">151</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_update_session_state</td>
+            <td class="mono">tests.test_models.TestScanSession</td>
+            <td class="mono">tests/test_models/TestScanSession.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">152</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_fail_non_existent_session</td>
+            <td class="mono">tests.test_models.TestScanSession</td>
+            <td class="mono">tests/test_models/TestScanSession.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">153</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_complete_non_existent_session</td>
+            <td class="mono">tests.test_models.TestScanSession</td>
+            <td class="mono">tests/test_models/TestScanSession.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">154</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_cancel_non_existent_session</td>
+            <td class="mono">tests.test_models.TestScanSession</td>
+            <td class="mono">tests/test_models/TestScanSession.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">155</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_list_sessions_limit</td>
+            <td class="mono">tests.test_models.TestScanSession</td>
+            <td class="mono">tests/test_models/TestScanSession.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">156</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_started_at_human</td>
+            <td class="mono">tests.test_models.TestScanSession</td>
+            <td class="mono">tests/test_models/TestScanSession.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">157</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This functional test meticulously verifies that the scan repository correctly handles large volumes of redundant file groups including their metadata hashes and space recovery statistics during complex deduplication processing runs.</div>
+                
+            </td>
+            <td class="mono">test_create_group</td>
+            <td class="mono">tests.test_models.TestDuplicateGroup</td>
+            <td class="mono">tests/test_models/TestDuplicateGroup.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">158</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This unit test meticulously validates the scan session CRUD operations ensuring that every folder path and comparison algorithm is correctly persisted to the database for historical reporting and audit trailing.</div>
+                
+            </td>
+            <td class="mono">test_get_groups_for_session</td>
+            <td class="mono">tests.test_models.TestDuplicateGroup</td>
+            <td class="mono">tests/test_models/TestDuplicateGroup.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">159</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_update_agent_decision</td>
+            <td class="mono">tests.test_models.TestDuplicateGroup</td>
+            <td class="mono">tests/test_models/TestDuplicateGroup.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">160</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_add_and_bulk_add</td>
+            <td class="mono">tests.test_models.TestFileMetadata</td>
+            <td class="mono">tests/test_models/TestFileMetadata.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">161</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This core test meticulously validates every file metadata record is correctly inserted and updated within the database schema while maintaining strict foreign key consistency and accurate byte size representation.</div>
+                
+            </td>
+            <td class="mono">test_update_file_hash</td>
+            <td class="mono">tests.test_models.TestFileMetadata</td>
+            <td class="mono">tests/test_models/TestFileMetadata.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">162</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This core test meticulously validates every file metadata record is correctly inserted and updated within the database schema while maintaining strict foreign key consistency and accurate byte size representation.</div>
+                
+            </td>
+            <td class="mono">test_update_non_existent_file_hash</td>
+            <td class="mono">tests.test_models.TestFileMetadata</td>
+            <td class="mono">tests/test_models/TestFileMetadata.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">163</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This audit test meticulously validates that every file deletion or keep operation is correctly recorded in the history log providing a complete and verifiable trail of all system-level modifications.</div>
+                
+            </td>
+            <td class="mono">test_log_action</td>
+            <td class="mono">tests.test_models.TestFileAction</td>
+            <td class="mono">tests/test_models/TestFileAction.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">164</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_empty_stats</td>
+            <td class="mono">tests.test_models.TestLifetimeStats</td>
+            <td class="mono">tests/test_models/TestLifetimeStats.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">165</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_stats_after_completion</td>
+            <td class="mono">tests.test_models.TestLifetimeStats</td>
+            <td class="mono">tests/test_models/TestLifetimeStats.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">166</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_get_space_saved_in_range</td>
+            <td class="mono">tests.test_models.TestLifetimeStats</td>
+            <td class="mono">tests/test_models/TestLifetimeStats.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">167</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_stats_with_no_completed_runs</td>
+            <td class="mono">tests.test_models.TestLifetimeStats</td>
+            <td class="mono">tests/test_models/TestLifetimeStats.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">168</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This core test meticulously validates every file metadata record is correctly inserted and updated within the database schema while maintaining strict foreign key consistency and accurate byte size representation.</div>
+                
+            </td>
+            <td class="mono">test_file_info_properties</td>
+            <td class="mono">tests.test_models.TestEngineBasics</td>
+            <td class="mono">tests/test_models/TestEngineBasics.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">169</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_system_exclusions</td>
+            <td class="mono">tests.test_models.TestEngineBasics</td>
+            <td class="mono">tests/test_models/TestEngineBasics.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">170</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_deduplicator_simple_match</td>
+            <td class="mono">tests.test_models.TestEngineBasics</td>
+            <td class="mono">tests/test_models/TestEngineBasics.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">171</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_deduplicator_cancel</td>
+            <td class="mono">tests.test_models.TestEngineBasics</td>
+            <td class="mono">tests/test_models/TestEngineBasics.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">172</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_deduplicator_fuzzy_match</td>
+            <td class="mono">tests.test_models.TestEngineBasics</td>
+            <td class="mono">tests/test_models/TestEngineBasics.py</td>
+            <td class="mono">app/models/repository.py</td>
+        </tr>
+        <tr>
+            <td class="num">173</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_theme_manager_init</td>
+            <td class="mono">tests.test_ui_utils</td>
+            <td class="mono">tests/test_ui_utils.py</td>
+            <td class="mono">Unknown</td>
+        </tr>
+        <tr>
+            <td class="num">174</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_theme_manager_apply</td>
+            <td class="mono">tests.test_ui_utils</td>
+            <td class="mono">tests/test_ui_utils.py</td>
+            <td class="mono">Unknown</td>
+        </tr>
+        <tr>
+            <td class="num">175</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This general test case meticulously validates the core functionality of the specified test node within the Intelligent Dedup framework ensuring all expected side effects are accurately and reliably maintained.</div>
+                
+            </td>
+            <td class="mono">test_theme_manager_cycle</td>
+            <td class="mono">tests.test_ui_utils</td>
+            <td class="mono">tests/test_ui_utils.py</td>
+            <td class="mono">Unknown</td>
+        </tr>
+        <tr>
+            <td class="num">176</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This structural test meticulously verifies the ScanViewModel state machine correctly handles transitions between scanning and idle modes while broadcasting accurate progress updates to the connected user interface components reliably.</div>
+                
+            </td>
+            <td class="mono">test_scan_viewmodel_initial_state</td>
+            <td class="mono">tests.test_viewmodels</td>
+            <td class="mono">tests/test_viewmodels.py</td>
+            <td class="mono">app/viewmodels/scan_viewmodel.py</td>
+        </tr>
+        <tr>
+            <td class="num">177</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This structural test meticulously verifies the ScanViewModel state machine correctly handles transitions between scanning and idle modes while broadcasting accurate progress updates to the connected user interface components reliably.</div>
+                
+            </td>
+            <td class="mono">test_scan_viewmodel_start_cancel</td>
+            <td class="mono">tests.test_viewmodels</td>
+            <td class="mono">tests/test_viewmodels.py</td>
+            <td class="mono">app/viewmodels/scan_viewmodel.py</td>
+        </tr>
+        <tr>
+            <td class="num">178</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This structural test meticulously verifies the ScanViewModel state machine correctly handles transitions between scanning and idle modes while broadcasting accurate progress updates to the connected user interface components reliably.</div>
+                
+            </td>
+            <td class="mono">test_scan_viewmodel_pause</td>
+            <td class="mono">tests.test_viewmodels</td>
+            <td class="mono">tests/test_viewmodels.py</td>
+            <td class="mono">app/viewmodels/scan_viewmodel.py</td>
+        </tr>
+        <tr>
+            <td class="num">179</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This structural test meticulously verifies the ScanViewModel state machine correctly handles transitions between scanning and idle modes while broadcasting accurate progress updates to the connected user interface components reliably.</div>
+                
+            </td>
+            <td class="mono">test_on_finished_reset</td>
+            <td class="mono">tests.test_viewmodels</td>
+            <td class="mono">tests/test_viewmodels.py</td>
+            <td class="mono">app/viewmodels/scan_viewmodel.py</td>
+        </tr>
+        <tr>
+            <td class="num">180</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This structural test meticulously verifies the ScanViewModel state machine correctly handles transitions between scanning and idle modes while broadcasting accurate progress updates to the connected user interface components reliably.</div>
+                
+            </td>
+            <td class="mono">test_model_reset</td>
+            <td class="mono">tests.test_viewmodels.TestDuplicateTableModel</td>
+            <td class="mono">tests/test_viewmodels/TestDuplicateTableModel.py</td>
+            <td class="mono">app/viewmodels/scan_viewmodel.py</td>
+        </tr>
+        <tr>
+            <td class="num">181</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This structural test meticulously verifies the ScanViewModel state machine correctly handles transitions between scanning and idle modes while broadcasting accurate progress updates to the connected user interface components reliably.</div>
+                
+            </td>
+            <td class="mono">test_load_result</td>
+            <td class="mono">tests.test_viewmodels.TestDuplicateTableModel</td>
+            <td class="mono">tests/test_viewmodels/TestDuplicateTableModel.py</td>
+            <td class="mono">app/viewmodels/scan_viewmodel.py</td>
+        </tr>
+        <tr>
+            <td class="num">182</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This structural test meticulously verifies the ScanViewModel state machine correctly handles transitions between scanning and idle modes while broadcasting accurate progress updates to the connected user interface components reliably.</div>
+                
+            </td>
+            <td class="mono">test_checkbox_logic</td>
+            <td class="mono">tests.test_viewmodels.TestDuplicateTableModel</td>
+            <td class="mono">tests/test_viewmodels/TestDuplicateTableModel.py</td>
+            <td class="mono">app/viewmodels/scan_viewmodel.py</td>
+        </tr>
+        <tr>
+            <td class="num">183</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This structural test meticulously verifies the ScanViewModel state machine correctly handles transitions between scanning and idle modes while broadcasting accurate progress updates to the connected user interface components reliably.</div>
+                
+            </td>
+            <td class="mono">test_mark_deleted</td>
+            <td class="mono">tests.test_viewmodels.TestDuplicateTableModel</td>
+            <td class="mono">tests/test_viewmodels/TestDuplicateTableModel.py</td>
+            <td class="mono">app/viewmodels/scan_viewmodel.py</td>
+        </tr>
+        <tr>
+            <td class="num">184</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This structural test meticulously verifies the ScanViewModel state machine correctly handles transitions between scanning and idle modes while broadcasting accurate progress updates to the connected user interface components reliably.</div>
+                
+            </td>
+            <td class="mono">test_get_checked_items</td>
+            <td class="mono">tests.test_viewmodels.TestDuplicateTableModel</td>
+            <td class="mono">tests/test_viewmodels/TestDuplicateTableModel.py</td>
+            <td class="mono">app/viewmodels/scan_viewmodel.py</td>
+        </tr>
+        <tr>
+            <td class="num">185</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This structural test meticulously verifies the ScanViewModel state machine correctly handles transitions between scanning and idle modes while broadcasting accurate progress updates to the connected user interface components reliably.</div>
+                
+            </td>
+            <td class="mono">test_flags</td>
+            <td class="mono">tests.test_viewmodels.TestDuplicateTableModel</td>
+            <td class="mono">tests/test_viewmodels/TestDuplicateTableModel.py</td>
+            <td class="mono">app/viewmodels/scan_viewmodel.py</td>
+        </tr>
+        <tr>
+            <td class="num">186</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This structural test meticulously verifies the ScanViewModel state machine correctly handles transitions between scanning and idle modes while broadcasting accurate progress updates to the connected user interface components reliably.</div>
+                
+            </td>
+            <td class="mono">test_set_data_checkbox</td>
+            <td class="mono">tests.test_viewmodels.TestDuplicateTableModel</td>
+            <td class="mono">tests/test_viewmodels/TestDuplicateTableModel.py</td>
+            <td class="mono">app/viewmodels/scan_viewmodel.py</td>
+        </tr>
+        <tr>
+            <td class="num">187</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This structural test meticulously verifies the ScanViewModel state machine correctly handles transitions between scanning and idle modes while broadcasting accurate progress updates to the connected user interface components reliably.</div>
+                
+            </td>
+            <td class="mono">test_load_result_with_decisions</td>
+            <td class="mono">tests.test_viewmodels_extended.TestDuplicateTableModelExtended</td>
+            <td class="mono">tests/test_viewmodels_extended/TestDuplicateTableModelExtended.py</td>
+            <td class="mono">app/viewmodels/scan_viewmodel.py</td>
+        </tr>
+        <tr>
+            <td class="num">188</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This functional test meticulously verifies that the scan repository correctly handles large volumes of redundant file groups including their metadata hashes and space recovery statistics during complex deduplication processing runs.</div>
+                
+            </td>
+            <td class="mono">test_set_data_group_header</td>
+            <td class="mono">tests.test_viewmodels_extended.TestDuplicateTableModelExtended</td>
+            <td class="mono">tests/test_viewmodels_extended/TestDuplicateTableModelExtended.py</td>
+            <td class="mono">app/viewmodels/scan_viewmodel.py</td>
+        </tr>
+        <tr>
+            <td class="num">189</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This structural test meticulously verifies the ScanViewModel state machine correctly handles transitions between scanning and idle modes while broadcasting accurate progress updates to the connected user interface components reliably.</div>
+                
+            </td>
+            <td class="mono">test_set_data_valid</td>
+            <td class="mono">tests.test_viewmodels_extended.TestDuplicateTableModelExtended</td>
+            <td class="mono">tests/test_viewmodels_extended/TestDuplicateTableModelExtended.py</td>
+            <td class="mono">app/viewmodels/scan_viewmodel.py</td>
+        </tr>
+        <tr>
+            <td class="num">190</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This functional test meticulously verifies that the scan repository correctly handles large volumes of redundant file groups including their metadata hashes and space recovery statistics during complex deduplication processing runs.</div>
+                
+            </td>
+            <td class="mono">test_mark_group_deleted</td>
+            <td class="mono">tests.test_viewmodels_extended.TestDuplicateTableModelExtended</td>
+            <td class="mono">tests/test_viewmodels_extended/TestDuplicateTableModelExtended.py</td>
+            <td class="mono">app/viewmodels/scan_viewmodel.py</td>
+        </tr>
+        <tr>
+            <td class="num">191</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This structural test meticulously verifies the ScanViewModel state machine correctly handles transitions between scanning and idle modes while broadcasting accurate progress updates to the connected user interface components reliably.</div>
+                
+            </td>
+            <td class="mono">test_data_roles</td>
+            <td class="mono">tests.test_viewmodels_extended.TestDuplicateTableModelExtended</td>
+            <td class="mono">tests/test_viewmodels_extended/TestDuplicateTableModelExtended.py</td>
+            <td class="mono">app/viewmodels/scan_viewmodel.py</td>
+        </tr>
+        <tr>
+            <td class="num">192</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This structural test meticulously verifies the ScanViewModel state machine correctly handles transitions between scanning and idle modes while broadcasting accurate progress updates to the connected user interface components reliably.</div>
+                
+            </td>
+            <td class="mono">test_flags_deleted</td>
+            <td class="mono">tests.test_viewmodels_extended.TestDuplicateTableModelExtended</td>
+            <td class="mono">tests/test_viewmodels_extended/TestDuplicateTableModelExtended.py</td>
+            <td class="mono">app/viewmodels/scan_viewmodel.py</td>
+        </tr>
+        <tr>
+            <td class="num">193</td>
+            <td><span class="status-badge status-pass">PASS</span></td>
+            <td class="desc-cell">
+                <div class="test-desc">This structural test meticulously verifies the ScanViewModel state machine correctly handles transitions between scanning and idle modes while broadcasting accurate progress updates to the connected user interface components reliably.</div>
+                
+            </td>
+            <td class="mono">test_header_data</td>
+            <td class="mono">tests.test_viewmodels_extended.TestDuplicateTableModelExtended</td>
+            <td class="mono">tests/test_viewmodels_extended/TestDuplicateTableModelExtended.py</td>
+            <td class="mono">app/viewmodels/scan_viewmodel.py</td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

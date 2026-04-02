@@ -1,14 +1,9 @@
 @echo off
 REM =============================================================================
-REM Intelligent Duplicate Finder — Full Test & Coverage Runner (batch)
+REM Intelligent Duplicate Finder - Full Test & Coverage Runner (batch)
 REM =============================================================================
-REM Runs ALL test files in tests/ (including UI tests using unbound-method
-REM pattern) and generates a full coverage report for the app module.
-REM
-REM Outputs:
-REM   Terminal summary with missing lines
-REM   HTML report at  htmlcov\index.html
-REM   Plain-text snapshot at  coverage_report_<timestamp>.txt
+REM Runs ALL test files in tests/ and saves per-run artifacts to
+REM coverage_history\<timestamp>\ then opens the history dashboard.
 REM =============================================================================
 
 set VENV_PYTHON=.\.venv\Scripts\python.exe
@@ -19,13 +14,24 @@ if not exist %VENV_PYTHON% (
     exit /b 1
 )
 
+REM Build a timestamp string for this run
+for /f "tokens=2 delims==" %%I in ('wmic os get localdatetime /value') do set DT=%%I
+set TIMESTAMP=%DT:~0,4%-%DT:~4,2%-%DT:~6,2%_%DT:~8,2%-%DT:~10,2%-%DT:~12,2%
+
+set HIST_ROOT=coverage_history
+set RUN_DIR=%HIST_ROOT%\%TIMESTAMP%
+set HTMLCOV=%RUN_DIR%\htmlcov
+
+if not exist %RUN_DIR% mkdir %RUN_DIR%
+
 echo.
 echo ============================================================
-echo   Intelligent Dedup - Full Test ^& Coverage Suite
+echo   Intelligent Dedup - Full Test and Coverage Suite
+echo   Run: %TIMESTAMP%
 echo ============================================================
 echo.
 
-REM Run all tests with branch coverage + dual report format
+REM Run pytest with per-run artifacts
 %VENV_PYTHON% -m pytest ^
     tests/ ^
     -v ^
@@ -34,8 +40,9 @@ REM Run all tests with branch coverage + dual report format
     --cov=cli ^
     --cov-branch ^
     --cov-report=term-missing ^
-    --cov-report=html:htmlcov ^
-    --cov-report=term
+    --cov-report=html:%HTMLCOV% ^
+    --cov-report=json:%RUN_DIR%\coverage.json ^
+    --junitxml=%RUN_DIR%\junit.xml
 
 set EXIT_CODE=%ERRORLEVEL%
 
@@ -46,20 +53,19 @@ if %EXIT_CODE%==0 (
     echo [FAIL] One or more tests failed. Exit code: %EXIT_CODE%
 )
 
-REM Save a timestamped plain-text snapshot
-for /f "tokens=1-6 delims=/: " %%a in ("%DATE% %TIME%") do (
-    set TIMESTAMP=%%c-%%a-%%b_%%d-%%e-%%f
-)
-set REPORT_FILE=coverage_report_%TIMESTAMP%.txt
+REM Write a minimal meta.json (PowerShell version writes full JSON)
+REM For the dashboard we need at minimum the timestamp field
+echo {"timestamp":"%TIMESTAMP%","exit_code":%EXIT_CODE%} > %RUN_DIR%\meta.json
 
+REM Regenerate dashboard and open it
 echo.
-echo [INFO] Saving plain-text snapshot to %REPORT_FILE% ...
-%VENV_PYTHON% -m coverage report --show-missing > %REPORT_FILE%
+echo [INFO] Generating coverage dashboard ...
+%VENV_PYTHON% generate_coverage_dashboard.py --open
 
 echo.
 echo ============================================================
-echo   Coverage HTML report :  htmlcov\index.html
-echo   Plain-text snapshot  :  %REPORT_FILE%
+echo   Coverage HTML (this run):  %HTMLCOV%\index.html
+echo   Dashboard (all runs)    :  coverage_history\index.html
 echo ============================================================
 echo.
 

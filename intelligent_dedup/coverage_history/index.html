@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Intelligent Dedup - Test Coverage Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #0d1117;
+    --surface:   #161b22;
+    --surface2:  #1e2530;
+    --border:    #30363d;
+    --text:      #e6edf3;
+    --muted:     #8b949e;
+    --accent:    #58a6ff;
+    --pass:      #3fb950;
+    --fail:      #f85149;
+    --warn:      #d29922;
+    --radius:    12px;
+    --shadow:    0 8px 32px rgba(0,0,0,.45);
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 24px;
+  }
+
+  /* ── Header ─────────────────────────────────────────────── */
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .header-logo {
+    font-size: 28px;
+    line-height: 1;
+  }
+  .header-titles h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -.3px;
+    background: linear-gradient(135deg,#58a6ff,#bc8cff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .header-titles p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .header-refresh {
+    margin-left: auto;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--accent);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: inherit;
+    transition: background .15s;
+  }
+  .header-refresh:hover { background: var(--surface); }
+
+  .header-run {
+    background: #238636;
+    border: 1px solid rgba(240,246,252,0.1);
+    color: #ffffff;
+    padding: 8px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    transition: background 0.2s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .header-run:hover { background: #2ea043; }
+  .header-run:active { transform: scale(0.98); }
+  .header-run:disabled {
+    background: var(--surface2);
+    color: var(--muted);
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  .header-run .icon { font-size: 16px; }
+
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .running { animation: pulse 1.5s infinite; }
+
+  /* ── Terminal Section ────────────────────────────────────── */
+  .terminal-section {
+    background: #000000;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-top: 28px;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow);
+  }
+  .terminal-header {
+    background: #1e1e1e;
+    padding: 8px 16px;
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .terminal-header .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .terminal-body {
+    background: #000;
+    color: #d4d4d4;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 13px;
+    padding: 16px;
+    height: 300px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+    line-height: 1.5;
+  }
+  .terminal-entry { margin-bottom: 4px; }
+  .terminal-entry.info { color: #58a6ff; }
+  .terminal-entry.error { color: #f85149; }
+  .terminal-entry.success { color: #3fb950; }
+  .terminal-entry.cmd { color: #d29922; font-weight: bold; }
+
+  /* ── KPI Cards ───────────────────────────────────────────── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .kpi {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .kpi:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .kpi::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--kpi-color, var(--accent));
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .kpi-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .kpi-value {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--kpi-color, var(--text));
+  }
+  .kpi-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* ── Chart Section ───────────────────────────────────────── */
+  .chart-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 28px;
+  }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title span { color: var(--muted); font-weight: 400; font-size: 12px; }
+  .chart-wrap { height: 200px; position: relative; }
+
+  /* ── History Table ───────────────────────────────────────── */
+  .table-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    max-height: 480px; /* Approximately 6-7 rows including header */
+  }
+  .table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .table-scroll-wrap {
+    overflow-y: auto;
+    flex: 1;
+  }
+  .run-count {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  thead th {
+    background: var(--surface2);
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    padding: 12px 16px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  tbody tr {
+    border-top: 1px solid var(--border);
+    transition: background .12s;
+  }
+  tbody tr:hover { background: var(--surface2); }
+  tbody tr.row-latest {
+    background: rgba(88,166,255,.055);
+    border-left: 3px solid var(--accent);
+  }
+  tbody td {
+    padding: 13px 16px;
+    vertical-align: middle;
+  }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .passed { color: var(--pass); font-weight: 600; }
+  .failed { color: var(--fail); font-weight: 600; }
+
+  /* ── Badges ──────────────────────────────────────────────── */
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    padding: 3px 9px;
+    border-radius: 4px;
+  }
+  .badge-pass { background: rgba(63,185,80,.18); color: var(--pass); }
+  .badge-fail { background: rgba(248,81,73,.18); color: var(--fail); }
+
+  /* ── Coverage Bar ────────────────────────────────────────── */
+  .cov-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 140px;
+  }
+  .cov-bar {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--border);
+    min-width: 0;
+    max-width: 100px;
+    position: relative;
+    overflow: visible;
+  }
+  .cov-label {
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── Detail Links ────────────────────────────────────────── */
+  .detail-link {
+    color: inherit;
+    text-decoration: underline dotted;
+    text-underline-offset: 4px;
+    cursor: pointer;
+    transition: color 0.15s;
+  }
+  .detail-link:hover {
+    color: var(--accent) !important;
+  }
+
+  /* ── Detail Button ───────────────────────────────────────── */
+  .btn-detail {
+    display: inline-block;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--accent);
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background .15s, border-color .15s;
+  }
+  .btn-detail:hover {
+    background: rgba(88,166,255,.1);
+    border-color: var(--accent);
+  }
+
+  /* ── Generated timestamp ─────────────────────────────────── */
+  .footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 24px;
+  }
+
+  /* ── Animations ──────────────────────────────────────────── */
+  @keyframes fadeIn {
+    from { opacity:0; transform:translateY(12px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .kpi, .chart-section, .table-section {
+    animation: fadeIn .35s ease both;
+  }
+  .chart-section { animation-delay: .05s; }
+  .table-section { animation-delay: .10s; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-logo">🔍</div>
+  <div class="header-titles">
+    <h1>Intelligent Dedup &ndash; Coverage Dashboard</h1>
+    <p>Test history and code coverage trends across all runs</p>
+  </div>
+  <div class="header-actions" style="margin-left: auto; display: flex; gap: 10px;">
+    <!-- Hidden latest run marker for polling -->
+    <div id="latestRunMarker" style="display:none" data-id="2026-03-28_13-52-45"></div>
+    <button id="runTestsBtn" class="header-run" onclick="runTests()">
+       <span class="icon">🚀</span> Run Tests
+    </button>
+    <button class="header-refresh" onclick="location.reload()">&#8635; Refresh</button>
+  </div>
+</div>
+
+<!-- KPI Cards -->
+<div class="kpi-grid">
+  <div class="kpi" style="--kpi-color:#4caf50">
+    <div class="kpi-label">Latest Coverage</div>
+    <div class="kpi-value">84.6<small style="font-size:18px">%</small></div>
+    <div class="kpi-sub">Branch + line coverage</div>
+  </div>
+  <div class="kpi" style="--kpi-color:var(--pass)">
+    <div class="kpi-label">Tests Passed</div>
+    <div class="kpi-value">193</div>
+    <div class="kpi-sub">Last run</div>
+  </div>
+  <div class="kpi" style="--kpi-color:var(--pass)">
+    <div class="kpi-label">Tests Failed</div>
+    <div class="kpi-value">0</div>
+    <div class="kpi-sub">Last run</div>
+  </div>
+  <div class="kpi" style="--kpi-color:var(--accent)">
+    <div class="kpi-label">Total Runs</div>
+    <div class="kpi-value">16</div>
+    <div class="kpi-sub">Stored in history</div>
+  </div>
+</div>
+
+<!-- Trend Chart -->
+<div class="chart-section">
+  <div class="section-title">Coverage Trend <span>over time</span></div>
+  <div class="chart-wrap">
+    <canvas id="trendChart"></canvas>
+  </div>
+</div>
+
+<!-- History Table -->
+<div class="table-section">
+  <div class="table-header">
+    <div class="section-title" style="margin:0">Run History</div>
+    <div class="run-count">16 runs</div>
+  </div>
+  <div class="table-scroll-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th class="num" style="text-align:left">Run #</th>
+        <th>Timestamp</th>
+        <th>Status</th>
+        <th class="num">Passed</th>
+        <th class="num">Failed</th>
+        <th class="num">Total</th>
+        <th>Coverage</th>
+        <th class="num">Duration</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr class="row-latest">
+            <td class="num" style="text-align:left; color:var(--muted)">#16</td>
+            <td>28/03/2026, 13:52:45</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td class="num passed">
+                <a class="detail-link" href="2026-03-28_13-52-45/test_details.html">193</a>
+            </td>
+            <td class="num failed">
+                <a class="detail-link" href="2026-03-28_13-52-45/test_details.html">0</a>
+            </td>
+            <td class="num">193</td>
+            <td>
+                <div class="cov-bar-wrap">
+                    <div class="cov-bar" style="width:84.6%;background:#4caf50"></div>
+                    <span class="cov-label" style="color:#4caf50">84.6%</span>
+                </div>
+            </td>
+            <td class="num">8.4s</td>
+            <td>
+                <a class="btn-detail" href="2026-03-28_13-52-45/htmlcov/index.html" title="Open coverage report">
+                    View Report
+                </a>
+            </td>
+        </tr>
+        <tr class="">
+            <td class="num" style="text-align:left; color:var(--muted)">#15</td>
+            <td>28/03/2026, 13:52:34</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td class="num passed">
+                <a class="detail-link" href="2026-03-28_13-52-34/test_details.html">193</a>
+            </td>
+            <td class="num failed">
+                <a class="detail-link" href="2026-03-28_13-52-34/test_details.html">0</a>
+            </td>
+            <td class="num">193</td>
+            <td>
+                <div class="cov-bar-wrap">
+                    <div class="cov-bar" style="width:84.6%;background:#4caf50"></div>
+                    <span class="cov-label" style="color:#4caf50">84.6%</span>
+                </div>
+            </td>
+            <td class="num">8.4s</td>
+            <td>
+                <a class="btn-detail" href="2026-03-28_13-52-34/htmlcov/index.html" title="Open coverage report">
+                    View Report
+                </a>
+            </td>
+        </tr>
+        <tr class="">
+            <td class="num" style="text-align:left; color:var(--muted)">#14</td>
+            <td>28/03/2026, 13:51:20</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td class="num passed">
+                <a class="detail-link" href="2026-03-28_13-51-20/test_details.html">193</a>
+            </td>
+            <td class="num failed">
+                <a class="detail-link" href="2026-03-28_13-51-20/test_details.html">0</a>
+            </td>
+            <td class="num">193</td>
+            <td>
+                <div class="cov-bar-wrap">
+                    <div class="cov-bar" style="width:84.5%;background:#4caf50"></div>
+                    <span class="cov-label" style="color:#4caf50">84.5%</span>
+                </div>
+            </td>
+            <td class="num">9.9s</td>
+            <td>
+                <a class="btn-detail" href="2026-03-28_13-51-20/htmlcov/index.html" title="Open coverage report">
+                    View Report
+                </a>
+            </td>
+        </tr>
+        <tr class="">
+            <td class="num" style="text-align:left; color:var(--muted)">#13</td>
+            <td>28/03/2026, 13:40:07</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td class="num passed">
+                <a class="detail-link" href="2026-03-28_13-40-07/test_details.html">190</a>
+            </td>
+            <td class="num failed">
+                <a class="detail-link" href="2026-03-28_13-40-07/test_details.html">3</a>
+            </td>
+            <td class="num">193</td>
+            <td>
+                <div class="cov-bar-wrap">
+                    <div class="cov-bar" style="width:84.7%;background:#4caf50"></div>
+                    <span class="cov-label" style="color:#4caf50">84.7%</span>
+                </div>
+            </td>
+            <td class="num">8.5s</td>
+            <td>
+                <a class="btn-detail" href="2026-03-28_13-40-07/htmlcov/index.html" title="Open coverage report">
+                    View Report
+                </a>
+            </td>
+        </tr>
+        <tr class="">
+            <td class="num" style="text-align:left; color:var(--muted)">#12</td>
+            <td>28/03/2026, 13:39:27</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td class="num passed">
+                <a class="detail-link" href="2026-03-28_13-39-27/test_details.html">190</a>
+            </td>
+            <td class="num failed">
+                <a class="detail-link" href="2026-03-28_13-39-27/test_details.html">3</a>
+            </td>
+            <td class="num">193</td>
+            <td>
+                <div class="cov-bar-wrap">
+                    <div class="cov-bar" style="width:84.7%;background:#4caf50"></div>
+                    <span class="cov-label" style="color:#4caf50">84.7%</span>
+                </div>
+            </td>
+            <td class="num">10.7s</td>
+            <td>
+                <a class="btn-detail" href="2026-03-28_13-39-27/htmlcov/index.html" title="Open coverage report">
+                    View Report
+                </a>
+            </td>
+        </tr>
+        <tr class="">
+            <td class="num" style="text-align:left; color:var(--muted)">#11</td>
+            <td>28/03/2026, 13:35:56</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td class="num passed">
+                <a class="detail-link" href="2026-03-28_13-35-56/test_details.html">190</a>
+            </td>
+            <td class="num failed">
+                <a class="detail-link" href="2026-03-28_13-35-56/test_details.html">3</a>
+            </td>
+            <td class="num">193</td>
+            <td>
+                <div class="cov-bar-wrap">
+                    <div class="cov-bar" style="width:84.7%;background:#4caf50"></div>
+                    <span class="cov-label" style="color:#4caf50">84.7%</span>
+                </div>
+            </td>
+            <td class="num">11.1s</td>
+            <td>
+                <a class="btn-detail" href="2026-03-28_13-35-56/htmlcov/index.html" title="Open coverage report">
+                    View Report
+                </a>
+            </td>
+        </tr>
+        <tr class="">
+            <td class="num" style="text-align:left; color:var(--muted)">#10</td>
+            <td>28/03/2026, 13:29:43</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td class="num passed">
+                <a class="detail-link" href="2026-03-28_13-29-43/test_details.html">190</a>
+            </td>
+            <td class="num failed">
+                <a class="detail-link" href="2026-03-28_13-29-43/test_details.html">3</a>
+            </td>
+            <td class="num">193</td>
+            <td>
+                <div class="cov-bar-wrap">
+                    <div class="cov-bar" style="width:84.7%;background:#4caf50"></div>
+                    <span class="cov-label" style="color:#4caf50">84.7%</span>
+                </div>
+            </td>
+            <td class="num">18.3s</td>
+            <td>
+                <a class="btn-detail" href="2026-03-28_13-29-43/htmlcov/index.html" title="Open coverage report">
+                    View Report
+                </a>
+            </td>
+        </tr>
+        <tr class="">
+            <td class="num" style="text-align:left; color:var(--muted)">#9</td>
+            <td>28/03/2026, 12:49:51</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td class="num passed">
+                <a class="detail-link" href="2026-03-28_12-49-51/test_details.html">190</a>
+            </td>
+            <td class="num failed">
+                <a class="detail-link" href="2026-03-28_12-49-51/test_details.html">3</a>
+            </td>
+            <td class="num">193</td>
+            <td>
+                <div class="cov-bar-wrap">
+                    <div class="cov-bar" style="width:84.7%;background:#4caf50"></div>
+                    <span class="cov-label" style="color:#4caf50">84.7%</span>
+                </div>
+            </td>
+            <td class="num">8.3s</td>
+            <td>
+                <a class="btn-detail" href="2026-03-28_12-49-51/htmlcov/index.html" title="Open coverage report">
+                    View Report
+                </a>
+            </td>
+        </tr>
+        <tr class="">
+            <td class="num" style="text-align:left; color:var(--muted)">#8</td>
+            <td>28/03/2026, 12:49:05</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td class="num passed">
+                <a class="detail-link" href="2026-03-28_12-49-05/test_details.html">190</a>
+            </td>
+            <td class="num failed">
+                <a class="detail-link" href="2026-03-28_12-49-05/test_details.html">3</a>
+            </td>
+            <td class="num">193</td>
+            <td>
+                <div class="cov-bar-wrap">
+                    <div class="cov-bar" style="width:84.7%;background:#4caf50"></div>
+                    <span class="cov-label" style="color:#4caf50">84.7%</span>
+                </div>
+            </td>
+            <td class="num">8.1s</td>
+            <td>
+                <a class="btn-detail" href="2026-03-28_12-49-05/htmlcov/index.html" title="Open coverage report">
+                    View Report
+                </a>
+            </td>
+        </tr>
+        <tr class="">
+            <td class="num" style="text-align:left; color:var(--muted)">#7</td>
+            <td>28/03/2026, 11:55:45</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td class="num passed">
+                <a class="detail-link" href="2026-03-28_11-55-45/test_details.html">163</a>
+            </td>
+            <td class="num failed">
+                <a class="detail-link" href="2026-03-28_11-55-45/test_details.html">3</a>
+            </td>
+            <td class="num">166</td>
+            <td>
+                <div class="cov-bar-wrap">
+                    <div class="cov-bar" style="width:66.3%;background:#ff9800"></div>
+                    <span class="cov-label" style="color:#ff9800">66.3%</span>
+                </div>
+            </td>
+            <td class="num">9.2s</td>
+            <td>
+                <a class="btn-detail" href="2026-03-28_11-55-45/htmlcov/index.html" title="Open coverage report">
+                    View Report
+                </a>
+            </td>
+        </tr>
+        <tr class="">
+            <td class="num" style="text-align:left; color:var(--muted)">#6</td>
+            <td>28/03/2026, 11:27:15</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td class="num passed">
+                <a class="detail-link" href="2026-03-28_11-27-15/test_details.html">158</a>
+            </td>
+            <td class="num failed">
+                <a class="detail-link" href="2026-03-28_11-27-15/test_details.html">0</a>
+            </td>
+            <td class="num">158</td>
+            <td>
+                <div class="cov-bar-wrap">
+                    <div class="cov-bar" style="width:63.8%;background:#ff9800"></div>
+                    <span class="cov-label" style="color:#ff9800">63.8%</span>
+                </div>
+            </td>
+            <td class="num">10.2s</td>
+            <td>
+                <a class="btn-detail" href="2026-03-28_11-27-15/htmlcov/index.html" title="Open coverage report">
+                    View Report
+                </a>
+            </td>
+        </tr>
+        <tr class="">
+            <td class="num" style="text-align:left; color:var(--muted)">#5</td>
+            <td>28/03/2026, 11:23:34</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td class="num passed">
+                <a class="detail-link" href="2026-03-28_11-23-34/test_details.html">158</a>
+            </td>
+            <td class="num failed">
+                <a class="detail-link" href="2026-03-28_11-23-34/test_details.html">0</a>
+            </td>
+            <td class="num">158</td>
+            <td>
+                <div class="cov-bar-wrap">
+                    <div class="cov-bar" style="width:63.8%;background:#ff9800"></div>
+                    <span class="cov-label" style="color:#ff9800">63.8%</span>
+                </div>
+            </td>
+            <td class="num">7.1s</td>
+            <td>
+                <a class="btn-detail" href="2026-03-28_11-23-34/htmlcov/index.html" title="Open coverage report">
+                    View Report
+                </a>
+            </td>
+        </tr>
+        <tr class="">
+            <td class="num" style="text-align:left; color:var(--muted)">#4</td>
+            <td>28/03/2026, 11:23:04</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td class="num passed">
+                <a class="detail-link" href="2026-03-28_11-23-04/test_details.html">158</a>
+            </td>
+            <td class="num failed">
+                <a class="detail-link" href="2026-03-28_11-23-04/test_details.html">0</a>
+            </td>
+            <td class="num">158</td>
+            <td>
+                <div class="cov-bar-wrap">
+                    <div class="cov-bar" style="width:63.8%;background:#ff9800"></div>
+                    <span class="cov-label" style="color:#ff9800">63.8%</span>
+                </div>
+            </td>
+            <td class="num">8.1s</td>
+            <td>
+                <a class="btn-detail" href="2026-03-28_11-23-04/htmlcov/index.html" title="Open coverage report">
+                    View Report
+                </a>
+            </td>
+        </tr>
+        <tr class="">
+            <td class="num" style="text-align:left; color:var(--muted)">#3</td>
+            <td>28/03/2026, 11:19:28</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td class="num passed">
+                <a class="detail-link" href="2026-03-28_11-19-28/test_details.html">158</a>
+            </td>
+            <td class="num failed">
+                <a class="detail-link" href="2026-03-28_11-19-28/test_details.html">0</a>
+            </td>
+            <td class="num">158</td>
+            <td>
+                <div class="cov-bar-wrap">
+                    <div class="cov-bar" style="width:63.8%;background:#ff9800"></div>
+                    <span class="cov-label" style="color:#ff9800">63.8%</span>
+                </div>
+            </td>
+            <td class="num">11.7s</td>
+            <td>
+                <a class="btn-detail" href="2026-03-28_11-19-28/htmlcov/index.html" title="Open coverage report">
+                    View Report
+                </a>
+            </td>
+        </tr>
+        <tr class="">
+            <td class="num" style="text-align:left; color:var(--muted)">#2</td>
+            <td>28/03/2026, 11:05:22</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td class="num passed">
+                <a class="detail-link" href="2026-03-28_11-05-22/test_details.html">158</a>
+            </td>
+            <td class="num failed">
+                <a class="detail-link" href="2026-03-28_11-05-22/test_details.html">0</a>
+            </td>
+            <td class="num">158</td>
+            <td>
+                <div class="cov-bar-wrap">
+                    <div class="cov-bar" style="width:63.8%;background:#ff9800"></div>
+                    <span class="cov-label" style="color:#ff9800">63.8%</span>
+                </div>
+            </td>
+            <td class="num">7.6s</td>
+            <td>
+                <a class="btn-detail" href="2026-03-28_11-05-22/htmlcov/index.html" title="Open coverage report">
+                    View Report
+                </a>
+            </td>
+        </tr>
+        <tr class="">
+            <td class="num" style="text-align:left; color:var(--muted)">#1</td>
+            <td>28/03/2026, 11:03:13</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td class="num passed">
+                <a class="detail-link" href="2026-03-28_11-03-13/test_details.html">158</a>
+            </td>
+            <td class="num failed">
+                <a class="detail-link" href="2026-03-28_11-03-13/test_details.html">0</a>
+            </td>
+            <td class="num">158</td>
+            <td>
+                <div class="cov-bar-wrap">
+                    <div class="cov-bar" style="width:0.0%;background:#f44336"></div>
+                    <span class="cov-label" style="color:#f44336">0.0%</span>
+                </div>
+            </td>
+            <td class="num">7.5s</td>
+            <td>
+                <a class="btn-detail" href="2026-03-28_11-03-13/htmlcov/index.html" title="Open coverage report">
+                    View Report
+                </a>
+            </td>
+        </tr>
+      
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- Terminal Output -->
+<div class="terminal-section">
+  <div class="terminal-header">
+    <div class="dot" style="background:#ff5f56"></div>
+    <div class="dot" style="background:#ffbd2e"></div>
+    <div class="dot" style="background:#27c93f"></div>
+    <span style="margin-left:8px">Test Execution Console Output</span>
+  </div>
+  <div id="terminal" class="terminal-body">
+    <div class="terminal-entry info">Ready to run tests. Console output will appear here...</div>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<div class="footer">
+  Generated 2026-03-28 14:00:19 &bull; Intelligent Dedup Coverage Dashboard
+</div>
+
+<script>
+const labels = ["28/03/2026, 11:03:13", "28/03/2026, 11:05:22", "28/03/2026, 11:19:28", "28/03/2026, 11:23:04", "28/03/2026, 11:23:34", "28/03/2026, 11:27:15", "28/03/2026, 11:55:45", "28/03/2026, 12:49:05", "28/03/2026, 12:49:51", "28/03/2026, 13:29:43", "28/03/2026, 13:35:56", "28/03/2026, 13:39:27", "28/03/2026, 13:40:07", "28/03/2026, 13:51:20", "28/03/2026, 13:52:34", "28/03/2026, 13:52:45"];
+const data   = [0, 63.8, 63.8, 63.8, 63.8, 63.8, 66.3, 84.7, 84.7, 84.7, 84.7, 84.7, 84.7, 84.5, 84.6, 84.6];
+
+if (labels.length > 0) {
+  const ctx = document.getElementById('trendChart').getContext('2d');
+  if (window.trendChartInstance) window.trendChartInstance.destroy();
+  window.trendChartInstance = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Coverage %',
+        data,
+        borderColor: '#58a6ff',
+        backgroundColor: 'rgba(88,166,255,0.08)',
+        borderWidth: 2,
+        pointRadius: data.length < 20 ? 4 : 2,
+        pointBackgroundColor: '#58a6ff',
+        fill: true,
+        tension: 0.35,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1e2530',
+          borderColor: '#30363d',
+          borderWidth: 1,
+          titleColor: '#e6edf3',
+          bodyColor: '#8b949e',
+          callbacks: {
+            label: ctx => ` ${ctx.parsed.y.toFixed(1)}% coverage`,
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: '#30363d' },
+          ticks: { color: '#8b949e', maxTicksLimit: 8, maxRotation: 30 },
+        },
+        y: {
+          min: 0, max: 100,
+          grid: { color: '#30363d' },
+          ticks: {
+            color: '#8b949e',
+            callback: v => v + '%',
+          },
+        }
+      }
+    }
+  });
+} else {
+  document.querySelector('.chart-wrap').innerHTML =
+    '<p style="text-align:center;line-height:200px;color:var(--muted);font-size:13px">No data yet - run the test suite first</p>';
+}
+
+function escapeHTML(str) {
+  const p = document.createElement('p');
+  p.textContent = str;
+  return p.innerHTML;
+}
+
+async function syncDashboard(isAuto = false) {
+    const marker = document.getElementById('latestRunMarker');
+    const oldId = marker ? marker.dataset.id : '';
+    
+    try {
+        const res = await fetch(window.location.pathname + '?t=' + Date.now());
+        const html = await res.text();
+        const parser = new DOMParser();
+        const newDoc = parser.parseFromString(html, 'text/html');
+        
+        const newMarker = newDoc.querySelector('#latestRunMarker');
+        const newId = newMarker ? newMarker.dataset.id : '';
+        
+        if (newId !== oldId || !isAuto) {
+            if (isAuto) console.log('[dashboard] New run detected: ' + newId);
+            
+            const newKpi = newDoc.querySelector('.kpi-grid');
+            const newTable = newDoc.querySelector('.table-section');
+            const newChart = newDoc.querySelector('.chart-wrap');
+            
+            if (newKpi) document.querySelector('.kpi-grid').innerHTML = newKpi.innerHTML;
+            if (newTable) document.querySelector('.table-section').innerHTML = newTable.innerHTML;
+            if (newChart) document.querySelector('.chart-wrap').innerHTML = newChart.innerHTML;
+            if (marker && newMarker) marker.dataset.id = newId;
+
+            const scripts = newDoc.querySelectorAll('script');
+            scripts.forEach(s => {
+               if (s.textContent.includes('const labels =')) {
+                   try { eval(s.textContent); } catch(e) { console.error('Chart update failed', e); }
+               }
+            });
+            
+            if (isAuto && document.getElementById('terminal')) {
+                const term = document.getElementById('terminal');
+                term.innerHTML += `<div class="terminal-entry info">Auto-sync: New run detected (${newId}).</div>`;
+                term.scrollTop = term.scrollHeight;
+            }
+        }
+    } catch (err) {
+        console.error('Dashboard sync failed:', err);
+    }
+}
+
+function runTests() {
+  const btn = document.getElementById('runTestsBtn');
+  const term = document.getElementById('terminal');
+  const originalText = btn.innerHTML;
+
+  if (window.location.protocol === 'file:') {
+    term.innerHTML = '<div class="terminal-entry error">❌ ERROR: Interactive features disabled.</div>';
+    term.innerHTML += '<div class="terminal-entry">The "Run Tests" button requires a local server to execute scripts.</div>';
+    term.innerHTML += '<div class="terminal-entry info">To enable this feature:</div>';
+    term.innerHTML += '<div class="terminal-entry">1. Run the server: <code>python serve_dashboard.py</code></div>';
+    term.innerHTML += '<div class="terminal-entry">2. Open the dashboard at: <a href="http://localhost:5000" style="color:#58a6ff">http://localhost:5000</a></div>';
+    alert("Please run 'python serve_dashboard.py' and open the dashboard via http://localhost:5000 to use this feature.");
+    return;
+  }
+  
+  btn.disabled = true;
+  btn.classList.add('running');
+  btn.innerHTML = '<span class="icon">⌛</span> Running Tests...';
+  
+  term.innerHTML = '<div class="terminal-entry cmd">> powershell.exe -File ./run_tests.ps1 -NoOpen</div>';
+  term.innerHTML += '<div class="terminal-entry info">Starting test execution sequence...</div>';
+  term.scrollTop = term.scrollHeight;
+
+  fetch('/run-tests', { method: 'POST' })
+    .then(async response => {
+      const data = await response.json();
+      const escapedOutput = escapeHTML(data.output || 'No output captured.');
+      term.innerHTML += `<div class="terminal-entry">${escapedOutput}</div>`;
+      
+      if (response.ok && (data.status === "success" || data.code === 0)) {
+        term.innerHTML += '<div class="terminal-entry success">Tests completed successfully. Syncing dashboard...</div>';
+        btn.innerHTML = '<span class="icon">✅</span> Done! Syncing...';
+        
+        await syncDashboard(false);
+        
+        setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+            btn.classList.remove('running');
+        }, 2000);
+      } else {
+        throw new Error(data.error || 'Test run failed');
+      }
+      term.scrollTop = term.scrollHeight;
+    })
+    .catch(err => {
+      console.error(err);
+      term.innerHTML += `<div class="terminal-entry error">Error: ${err.message}</div>`;
+      btn.innerHTML = '<span class="icon">❌</span> Error. Try Again?';
+      btn.disabled = false;
+      btn.classList.remove('running');
+      term.scrollTop = term.scrollHeight;
+      setTimeout(() => { if (!btn.classList.contains('running')) btn.innerHTML = originalText; }, 5000);
+    });
+}
+
+// Background polling for external runs (every 10 seconds)
+setInterval(() => syncDashboard(true), 10000);
+setTimeout(() => syncDashboard(true), 2000);
+</script>
+</body>
+</html>
